@@ -212,6 +212,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(null);
 				}
+				balance(current);
 				return true;
 			}else if(current.getLeft()==null&&current.getRight()!=null){
 				Node parent=current.getParent();
@@ -220,6 +221,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(current.getRight());
 				}
+				balance(current);
 				return true;
 			}else {
 				Node parent=current.getParent();
@@ -240,6 +242,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(succesor);
 				}
+				balance(current);
 				return true;
 			}
 		}else if(comparator.compare(current.getValue(), toDelete)>=1) {
