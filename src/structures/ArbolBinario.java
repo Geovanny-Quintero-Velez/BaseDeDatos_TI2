@@ -485,8 +485,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			return rightN-leftN;
 		}
 		
-/**
-		public Node rightRotation() {
+		public void rightRotation(int noSirve) {
 			Node toRotate = this;
 			Node rightSon = toRotate.right;
 			Node parent = toRotate.parent;
@@ -503,10 +502,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			if(rightSon != null) {
 				rightSon.setParent(parent);
 			}
-			return toRotate;
 		}
 	
-		public Node leftRotation() {
+		public void leftRotation(int noSirve) {
 			Node toRotate = this;
 			Node leftSon = toRotate.left;
 			Node parent = toRotate.parent;
@@ -523,11 +521,34 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			if(leftSon != null) {
 				leftSon.setParent(parent);
 			}
-			return toRotate;
 		}
 		
-*/
-
+		public void searchUnbalance(boolean unbalance) {
+			if(factorBalance() == 1) {
+				if(unbalance != true) {
+					
+				}
+			}else if(factorBalance() == -1) {
+				
+			}else if(factorBalance() == 2 || factorBalance() == 2) {
+				unbalance = true;
+			}
+			
+			if(factorBalance() == 2) {
+				
+			}else if(factorBalance() == 2) {
+				
+			}else if(factorBalance() == 1) {
+				
+			}else if(factorBalance() == -1) {
+				
+			}
+			
+			if( Math.abs(factorBalance())== 1 || factorBalance()== 0) {
+				
+			}
+		}
+		
 		public Node leftRotation() {
 			 Node p=this;
 			 Node q=right;
