@@ -288,43 +288,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 	}
 	
-	public Node search(Node node, E value) {
-		if(node == null || value==node.getValue()) {
-			return node;
-		}
-		if(comparator.compare(node.getValue(),value)<0) {
-			return search(node.getLeft(),value);
-		}else {
-			return search(node.getRight(),value);
-		}
-	}
-	
-	public void remove(E value) {
-		Node node = search(root, value);
-		Node actual = null;
-		Node temp = null;
-		if(node.getLeft() == null || node.getRight() == null) {
-			actual = node;
-		}else {
-			actual = successor(node);
-		}
-		if(actual.getLeft() != null) {
-			temp = actual.getLeft();
-		}else {
-			temp = actual.getRight();
-		}
-		if(searchFather(root, actual.getKey())==null) {
-			root = temp;
-		}else if(actual.getKey() == searchFather(root, actual.getKey()).getLeft().getKey()) {
-			searchFather(root, actual.getKey()).setLeft(temp);
-		}else {
-			searchFather(root, actual.getKey()).setRight(temp);
-		}
-		if(actual.getKey() != node.getKey()) {
-			node.setKey(actual.getKey());
-		}
-	}
-	
 	public String inorderReverse() {
 		if(root!=null) {
 			return root.preOrden();
@@ -522,70 +485,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}
 			
 			return rightN-leftN;
-		}
-		
-		public void rightRotation(int noSirve) {
-			Node toRotate = this;
-			Node rightSon = toRotate.right;
-			Node parent = toRotate.parent;
-			Node grandParent = parent.parent;
-			if(grandParent.getLeft()==parent) {
-				grandParent.setLeft(toRotate);				
-			}else if(grandParent.getRight()==parent) {
-				grandParent.setRight(toRotate);
-			}
-			parent.setLeft(rightSon);
-			parent.setParent(toRotate);
-			toRotate.setRight(parent);
-			toRotate.setParent(grandParent);
-			if(rightSon != null) {
-				rightSon.setParent(parent);
-			}
-		}
-	
-		public void leftRotation(int noSirve) {
-			Node toRotate = this;
-			Node leftSon = toRotate.left;
-			Node parent = toRotate.parent;
-			Node grandParent = parent.parent;
-			if(grandParent.getLeft()==parent) {
-				grandParent.setLeft(toRotate);				
-			}else if(grandParent.getRight()==parent) {
-				grandParent.setRight(toRotate);
-			}
-			parent.setRight(leftSon);
-			parent.setParent(toRotate);
-			toRotate.setLeft(parent);
-			toRotate.setParent(grandParent);
-			if(leftSon != null) {
-				leftSon.setParent(parent);
-			}
-		}
-		
-		public void searchUnbalance(boolean unbalance) {
-			if(factorBalance() == 1) {
-				if(unbalance != true) {
-					
-				}
-			}else if(factorBalance() == -1) {
-				
-			}else if(factorBalance() == 2 || factorBalance() == 2) {
-				unbalance = true;
-			}
-			
-			if(factorBalance() == 2) {
-				
-			}else if(factorBalance() == 2) {
-				
-			}else if(factorBalance() == 1) {
-				
-			}else if(factorBalance() == -1) {
-				
-			}
-			
-			if( Math.abs(factorBalance())== 1 || factorBalance()== 0) {
-				
-			}
 		}
 		
 		public Node leftRotation() {
