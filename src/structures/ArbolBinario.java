@@ -254,13 +254,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}else {
 				Node parent=current.getParent();
 				Node succesor=getSuccesor(current,current);
-				if(succesor.getParent()!=null) {
-					Node parentSuccesor=succesor.getParent();
-					if(parentSuccesor.getLeft()==succesor) {
-						parentSuccesor.setLeft(null);
-					}else {
-						parentSuccesor.setRight(null);
-					}
+				Node parentSuccesor=succesor.getParent();
+				if(parentSuccesor.getLeft()==succesor) {
+					parentSuccesor.setLeft(null);
+				}else {
+					parentSuccesor.setRight(null);
 				}
 				succesor.setParent(current.getParent());
 				succesor.setLeft(current.getLeft());
@@ -498,7 +496,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else  {
+				 }else {
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 } 
@@ -533,7 +531,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else  {
+				 }else {
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 }
