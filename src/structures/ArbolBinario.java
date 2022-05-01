@@ -200,6 +200,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 					root.getRight().setLeft(root.getLeft());
 					root.getRight().setParent(null);
 					root=root.getRight();
+					balance(root);
 				}else {
 					Node succesor=getSuccesor(root,root);
 					if(succesor.getParent()!=null) {
@@ -213,7 +214,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 								parentSuccesor.setRight(succesor.getRight());
 							}else parentSuccesor.setRight(null);
 						}
+						balance(parentSuccesor);
 					}
+					balance(succesor);
 					succesor.setParent(null);
 					succesor.setLeft(root.getLeft());
 					succesor.setRight(root.getRight());
@@ -236,6 +239,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(null);
 				}
+				balance(parent);
 				
 				return true;
 			}else if(current.getLeft()==null&&current.getRight()!=null){
@@ -245,7 +249,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(current.getRight());
 				}
-				
+				balance(parent);
 				return true;
 			}else {
 				Node parent=current.getParent();
@@ -266,6 +270,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}else {
 					parent.setRight(succesor);
 				}
+				balance(parent);
 				return true;
 			}
 		}else if(comparator.compare(current.getValue(), toDelete)>=1) {
@@ -486,16 +491,14 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			 Node p=this;
 			 Node q=right;
 			 Node thisParent=parent;
-			 System.out.println(q);
 			 Node b=q.left;
 			 Node c=q.getRight();
 			 Node a=p.left;
-			 
 			 if(thisParent!=null) {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else if(thisParent.getRight()==p) {
+				 }else  {
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 } 
@@ -530,7 +533,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else if(thisParent.getRight()==p) {
+				 }else  {
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 }
@@ -580,7 +583,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				int fbs=left.factorBalance();
 				if(fbs==-1||fbs==0) {
 					return rightRotation();
-				}else if(fbs==-1) {
+				}else if(fbs==1) {
 					return doubleRotationL();
 				}
 				
