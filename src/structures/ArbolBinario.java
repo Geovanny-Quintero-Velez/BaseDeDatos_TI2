@@ -250,13 +250,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}else {
 				Node parent=current.getParent();
 				Node succesor=getSuccesor(current,current);
-				if(succesor.getParent()!=null) {
-					Node parentSuccesor=succesor.getParent();
-					if(parentSuccesor.getLeft()==succesor) {
-						parentSuccesor.setLeft(null);
-					}else {
-						parentSuccesor.setRight(null);
-					}
+				Node parentSuccesor=succesor.getParent();
+				if(parentSuccesor.getLeft()==succesor) {
+					parentSuccesor.setLeft(null);
+				}else {
+					parentSuccesor.setRight(null);
 				}
 				succesor.setParent(current.getParent());
 				succesor.setLeft(current.getLeft());
@@ -280,43 +278,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}else {
 				return false;
 			}			
-		}
-	}
-	
-	public Node search(Node node, E value) {
-		if(node == null || value==node.getValue()) {
-			return node;
-		}
-		if(comparator.compare(node.getValue(),value)<0) {
-			return search(node.getLeft(),value);
-		}else {
-			return search(node.getRight(),value);
-		}
-	}
-	
-	public void remove(E value) {
-		Node node = search(root, value);
-		Node actual = null;
-		Node temp = null;
-		if(node.getLeft() == null || node.getRight() == null) {
-			actual = node;
-		}else {
-			actual = successor(node);
-		}
-		if(actual.getLeft() != null) {
-			temp = actual.getLeft();
-		}else {
-			temp = actual.getRight();
-		}
-		if(searchFather(root, actual.getKey())==null) {
-			root = temp;
-		}else if(actual.getKey() == searchFather(root, actual.getKey()).getLeft().getKey()) {
-			searchFather(root, actual.getKey()).setLeft(temp);
-		}else {
-			searchFather(root, actual.getKey()).setRight(temp);
-		}
-		if(actual.getKey() != node.getKey()) {
-			node.setKey(actual.getKey());
 		}
 	}
 	
@@ -519,7 +480,8 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			return rightN-leftN;
 		}
 		
-		public void rightRotation(int noSirve) {
+/**
+		public Node rightRotation() {
 			Node toRotate = this;
 			Node rightSon = toRotate.right;
 			Node parent = toRotate.parent;
@@ -536,9 +498,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			if(rightSon != null) {
 				rightSon.setParent(parent);
 			}
+			return toRotate;
 		}
 	
-		public void leftRotation(int noSirve) {
+		public Node leftRotation() {
 			Node toRotate = this;
 			Node leftSon = toRotate.left;
 			Node parent = toRotate.parent;
@@ -555,39 +518,15 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			if(leftSon != null) {
 				leftSon.setParent(parent);
 			}
+			return toRotate;
 		}
 		
-		public void searchUnbalance(boolean unbalance) {
-			if(factorBalance() == 1) {
-				if(unbalance != true) {
-					
-				}
-			}else if(factorBalance() == -1) {
-				
-			}else if(factorBalance() == 2 || factorBalance() == 2) {
-				unbalance = true;
-			}
-			
-			if(factorBalance() == 2) {
-				
-			}else if(factorBalance() == 2) {
-				
-			}else if(factorBalance() == 1) {
-				
-			}else if(factorBalance() == -1) {
-				
-			}
-			
-			if( Math.abs(factorBalance())== 1 || factorBalance()== 0) {
-				
-			}
-		}
-		
+*/
+
 		public Node leftRotation() {
 			 Node p=this;
 			 Node q=right;
 			 Node thisParent=parent;
-			 System.out.println(q);
 			 Node b=q.left;
 			 Node c=q.getRight();
 			 Node a=p.left;
@@ -596,7 +535,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else if(thisParent.getRight()==p) {
+				 }else{
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 } 
@@ -631,7 +570,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
 					 q.setParent(thisParent);
-				 }else if(thisParent.getRight()==p) {
+				 }else {
 					 thisParent.setRight(q);
 					 q.setParent(thisParent);
 				 }
