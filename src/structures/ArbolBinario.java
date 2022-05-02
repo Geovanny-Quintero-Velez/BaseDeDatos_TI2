@@ -29,7 +29,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 	}
 	
-	
+	public int size() {
+		return root.countNodes();
+	}
 	
 	
 	public E left() {
@@ -49,11 +51,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	public void insert(Node current,Node toInsert) {
-		boolean flag=false;
-		
-		flag=comparator.compare(current.getValue(),toInsert.getValue())>=0;
-		
-		if(flag) {
+		if(comparator.compare(current.getValue(),toInsert.getValue())>=0) {
 			if(current.getRight()==null) {
 				current.setRight(toInsert);
 				toInsert.setParent(current);
@@ -188,7 +186,110 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}
 		}
 	}
+	public Node getNode(E value) {
+		Node toSearch=new Node(value);
+		if(root==null) {
+			return null;
+		}else {
+			return getNode(root,toSearch);
+		}
+	}
 	
+	private Node getNode(Node current,Node search) {
+		
+		if(current==null) {
+			return null;
+		}
+		if(current.isLeaf()) {
+			if(current.getValue().equals(search.getValue())) {
+				return current;
+			}else {
+				return null;
+			}
+		}else {
+			if(current.getValue()==search.getValue()) {
+				return current;
+			}else if(comparator.compare(current.getValue(),search.getValue())>=0) {
+				return getNode( current.getRight(),search);
+			}else {
+				return getNode(current.getLeft(),search);
+			}
+		}
+	}
+	
+	
+	public boolean delete(E value) {
+		if(root==null) {
+			return false;
+		}else{
+			Node toDelete=getNode(value);
+			if(toDelete==null) {
+				return false;
+			}
+			if(toDelete==root) {
+				if(root.isLeaf()) {
+					root=null;
+					return true;
+				}
+			}
+			Node parent=toDelete.getParent();
+			if(toDelete.isLeaf()) {
+				if(parent.getLeft()==toDelete) {
+					parent.setLeft(null);
+					return true;
+				}else {
+					parent.setRight(null);
+					return true;
+				}
+			}else if(toDelete.getLeft()!=null&&toDelete.getRight()!=null) {
+				Node succesor=getSuccesor(toDelete,toDelete);
+				Node parentSuccesor= succesor.getParent();
+				
+				if(parentSuccesor.getLeft()==succesor) {
+					parentSuccesor.setLeft(succesor.getRight());
+				}else {
+					parentSuccesor.setRight(succesor.getRight());
+					
+				}
+				
+				toDelete.setValue(succesor.getValue());
+				balance(toDelete);
+				return true;
+			}else {
+				if(toDelete.getLeft()!=null) {
+					if(parent!=null) {
+						if(parent.getLeft()==toDelete) {
+							parent.setLeft(toDelete.getLeft());
+						}else {
+							parent.setRight(toDelete.getLeft());
+						}
+						balance(parent);
+						return true;
+					}else {
+						root=root.getLeft();
+						balance(root);
+						return true;
+					}
+				}else {
+					if(parent!=null) {
+						if(parent.getLeft()==toDelete) {
+							parent.setLeft(toDelete.getRight());
+						}else {
+							parent.setRight(toDelete.getRight());
+						}
+						balance(parent);
+					}else {
+						root=root.getRight();
+						balance(root);
+					}
+					return true;
+				}
+			}
+			
+		}
+	}
+	
+	/*
 	public boolean delete(E value) {
 		if(root==null) {
 			return false;
@@ -201,8 +302,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 					root.getRight().setParent(null);
 					root=root.getRight();
 					balance(root);
-				}else {
+				} else {
 					Node succesor=getSuccesor(root,root);
+					System.out.println(succesor);
 					if(succesor.getParent()!=null) {
 						Node parentSuccesor=succesor.getParent();
 						if(parentSuccesor.getLeft()==succesor) {
@@ -216,7 +318,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 						}
 						balance(parentSuccesor);
 					}
-					balance(succesor);
 					succesor.setParent(null);
 					succesor.setLeft(root.getLeft());
 					succesor.setRight(root.getRight());
@@ -285,7 +386,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}			
 		}
 	}
-	
+	*/
 	public String inorderReverse() {
 		if(root!=null) {
 			return root.preOrden();
@@ -296,6 +397,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	
 	public Node getSuccesor(Node current,Node parent) {
 		if(parent.getRight()==null) {
+			if(parent.getLeft()!=null) {
+				return parent.getLeft();
+			}else
 			return null;
 		}else if(parent.getRight().getLeft()==null) {
 			return parent.getRight();
@@ -355,12 +459,19 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		public Node(E value) {
 			this.value=value;
 		}
+		
+		public void setValue(E value) {
+			this.value=value;
+		}
 
 		public Node getLeft() {
 			return left;
 		}
 
 		public void setLeft(Node left) {
+			if(left!=null) {
+				left.setParent(this);
+			}
 			this.left = left;
 		}
 
@@ -369,6 +480,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 
 		public void setRight(Node right) {
+			if(right!=null) {
+				right.setParent(this);
+			}
 			this.right = right;
 		}
 
@@ -495,14 +609,15 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			 if(thisParent!=null) {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
-					 q.setParent(thisParent);
+					
 				 }else {
 					 thisParent.setRight(q);
-					 q.setParent(thisParent);
+					
 				 } 
 			 }else {
 				 q.setParent(null);
 			 }
+			 q.setParent(thisParent);
 			 q.setLeft(p);
 			 p.setParent(q);
 			 q.setRight(c);
@@ -530,10 +645,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			if(thisParent!=null) {
 				 if(thisParent.getLeft()==p) {
 					 thisParent.setLeft(q);
-					 q.setParent(thisParent);
+					 
 				 }else {
 					 thisParent.setRight(q);
-					 q.setParent(thisParent);
+					 
 				 }
 			}else {
 				q.setParent(null);
@@ -545,21 +660,14 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			 
 			 q.setLeft(c);
 			 
-			 if(c!=null) {
-				 c.setParent(q);
-			 }
+			
 			 
 			 p.setLeft(b);
 			 
-			 if(b!=null) {
-				 b.setParent(q);
-			 }
-			 
+			
 			 p.setRight(a);
 			 
-			 if(a!=null) {
-				 a.setParent(q);
-			 }
+		
 			 
 			
 			 return q;
