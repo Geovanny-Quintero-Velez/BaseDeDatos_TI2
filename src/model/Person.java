@@ -11,6 +11,7 @@ public class Person {
 	private double height;
 	private String nationality;
 	private Object fotografia;
+	private String code;
 	
 	public Person() {
 		
@@ -79,6 +80,10 @@ public class Person {
 
 	public void setFotografia(Object fotografia) {
 		this.fotografia = fotografia;
+	}
+
+	public String getCode() {
+		return code;
 	}
 	
 	

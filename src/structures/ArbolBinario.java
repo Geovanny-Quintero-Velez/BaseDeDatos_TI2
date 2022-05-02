@@ -54,13 +54,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		if(comparator.compare(current.getValue(),toInsert.getValue())>=0) {
 			if(current.getRight()==null) {
 				current.setRight(toInsert);
-				toInsert.setParent(current);
 				balance(toInsert);
 			}else insert(current.getRight(),toInsert);
 		}else {
 			if(current.getLeft()==null) {
 				current.setLeft(toInsert);
-				toInsert.setParent(current);
 				balance(toInsert);
 			}else insert(current.getLeft(),toInsert);
 		}
@@ -92,9 +90,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}else if(node.isLeaf()) {
 			balance(node.getParent());
 		}else {
-			if(!node.isBalanced()) {
-				node.balance();
-			}
+			node.balance();
 			balance(node.getParent());
 		}
 		
@@ -289,105 +285,8 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 	}
 	
-	/*
-	public boolean delete(E value) {
-		if(root==null) {
-			return false;
-		}else {
-			if(value==root.getValue()) {
-				if(root.isLeaf()) {
-					root=null;
-				}else if(root.getLeft()==null&&root.getRight()!=null) {
-					root.getRight().setLeft(root.getLeft());
-					root.getRight().setParent(null);
-					root=root.getRight();
-					balance(root);
-				} else {
-					Node succesor=getSuccesor(root,root);
-					System.out.println(succesor);
-					if(succesor.getParent()!=null) {
-						Node parentSuccesor=succesor.getParent();
-						if(parentSuccesor.getLeft()==succesor) {
-							if(succesor.getRight()!=null) {
-								parentSuccesor.setLeft(succesor.getRight());
-							}else parentSuccesor.setLeft(null);
-						}else {
-							if(succesor.getRight()!=null) {
-								parentSuccesor.setRight(succesor.getRight());
-							}else parentSuccesor.setRight(null);
-						}
-						balance(parentSuccesor);
-					}
-					succesor.setParent(null);
-					succesor.setLeft(root.getLeft());
-					succesor.setRight(root.getRight());
-					root=succesor;
-				}
-				
-				return true;
-			}else {
-				return delete(root,value);
-			}
-		}
-	}
 	
-	public boolean delete(Node current,E toDelete) {
-		if(current.getValue()==toDelete) {
-			if(current.isLeaf()) {
-				Node parent=current.getParent();
-				if(parent.getLeft()==current) {
-					parent.setLeft(null);
-				}else {
-					parent.setRight(null);
-				}
-				balance(parent);
-				
-				return true;
-			}else if(current.getLeft()==null&&current.getRight()!=null){
-				Node parent=current.getParent();
-				if(parent.getLeft()==current) {
-					parent.setLeft(current.getRight());
-				}else {
-					parent.setRight(current.getRight());
-				}
-				balance(parent);
-				return true;
-			}else {
-				Node parent=current.getParent();
-				Node succesor=getSuccesor(current,current);
-				Node parentSuccesor=succesor.getParent();
-				if(parentSuccesor.getLeft()==succesor) {
-					parentSuccesor.setLeft(null);
-				}else {
-					parentSuccesor.setRight(null);
-				}
-				succesor.setParent(current.getParent());
-				succesor.setLeft(current.getLeft());
-				succesor.setRight(current.getRight());
-				if(parent.getLeft()==current) {
-					parent.setLeft(succesor);
-				}else {
-					parent.setRight(succesor);
-				}
-				balance(parent);
-				return true;
-			}
-		}else if(comparator.compare(current.getValue(), toDelete)>=1) {
-			if(current.getRight()!=null) {
-				return delete(current.getRight(),toDelete);
-			}else {
-				return false;
-			}
-		}else {
-			if(current.getLeft()!=null) {
-				return delete(current.getLeft(),toDelete);
-			}else {
-				return false;
-			}			
-		}
-	}
-	*/
-	public String inorderReverse() {
+	public String preOrden() {
 		if(root!=null) {
 			return root.preOrden();
 		}else {
@@ -617,21 +516,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			 }else {
 				 q.setParent(null);
 			 }
-			 q.setParent(thisParent);
 			 q.setLeft(p);
-			 p.setParent(q);
 			 q.setRight(c);
-			 if(c!=null) {
-				 c.setParent(q);
-			 }
 			 p.setLeft(a);
-			 if(a!=null) {
-				 a.setParent(p);
-			 }
 			 p.setRight(b);
-			 if(b!=null) {
-				 b.setParent(p);
-			 }
 		   return q;
 		}
 		
