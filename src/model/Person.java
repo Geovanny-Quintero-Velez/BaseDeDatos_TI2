@@ -6,6 +6,7 @@ public class Person {
 
 	private String name;
 	private String lastName;
+	private String fullName;
 	private boolean gender;
 	private Date birthDate;
 	private double height;
@@ -17,9 +18,11 @@ public class Person {
 		
 	}
 	
+	
 	public Person(String name, String lastName, boolean gender, Date birthDate, double height, String nationality) {
 		this.name = name;
 		this.lastName = lastName;
+		fullName=name+" "+lastName;
 		this.gender = gender;
 		this.birthDate = birthDate;
 		this.height = height;
@@ -84,6 +87,20 @@ public class Person {
 
 	public String getCode() {
 		return code;
+	}
+	
+	public void setCode(String code) {
+		this.code=code;
+	}
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	
 	

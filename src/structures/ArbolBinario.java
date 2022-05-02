@@ -1,5 +1,6 @@
 package structures;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class ArbolBinario<E ,C extends Comparator<E>> {
@@ -51,7 +52,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	public void insert(Node current,Node toInsert) {
-		if(comparator.compare(current.getValue(),toInsert.getValue())>=0) {
+		if(comparator.compare(toInsert.getValue(),current.getValue())>=0) {
 			if(current.getRight()==null) {
 				current.setRight(toInsert);
 				balance(toInsert);
@@ -96,7 +97,23 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		
 	}
 	
-	
+	public ArrayList<E> getGreater(E value) {
+		ArrayList<E> greater=new ArrayList<>();
+		return getGreater(root,greater,value);
+	}
+	public ArrayList<E> getGreater(Node current,ArrayList<E> array,E value) {
+		ArrayList<E> greater=array;
+		if(comparator.compare(value, current.getValue())>=0 ) {
+			greater.add(current.getValue());
+		}
+		if(current.getRight()!=null) {
+			greater=getGreater(current.getRight(), greater, value);
+		}
+		if(current.getLeft()!=null) {
+			greater=getGreater(current.getLeft(), greater, value);
+		}
+		return greater;
+	}
 	public boolean isBalanced() {
 		return root.isBalanced();
 	}
@@ -134,7 +151,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			return false;
 		}
 		if(current.isLeaf()) {
-			if(current.getValue().equals(search.getValue())) {
+			if(current.getValue()==search.getValue()) {
 				return true;
 			}else {
 				return false;
@@ -142,7 +159,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}else {
 			if(current.getValue()==search.getValue()) {
 				return true;
-			}else if(comparator.compare(current.getValue(),search.getValue())>=0) {
+			}else if(comparator.compare(search.getValue(),current.getValue())>=0) {
 				return search( current.getRight(),search);
 			}else {
 				return search(current.getLeft(),search);
@@ -167,7 +184,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			return null;
 		}
 		if(current.isLeaf()) {
-			if(current.getValue().equals(search.getValue())) {
+			if(current.getValue()==(search.getValue())) {
 				return current.getValue();
 			}else {
 				return null;
@@ -175,7 +192,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}else {
 			if(current.getValue()==search.getValue()) {
 				return current.getValue();
-			}else if(comparator.compare(current.getValue(),search.getValue())>=0) {
+			}else if(comparator.compare(search.getValue(),current.getValue())>=0) {
 				return get( current.getRight(),search);
 			}else {
 				return get(current.getLeft(),search);
@@ -205,7 +222,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}else {
 			if(current.getValue()==search.getValue()) {
 				return current;
-			}else if(comparator.compare(current.getValue(),search.getValue())>=0) {
+			}else if(comparator.compare(search.getValue(),current.getValue())>=0) {
 				return getNode( current.getRight(),search);
 			}else {
 				return getNode(current.getLeft(),search);
@@ -288,9 +305,9 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	
 	public String preOrden() {
 		if(root!=null) {
-			return root.preOrden();
+			return "["+root.preOrden()+"]";
 		}else {
-			return "";
+			return "[]";
 		}
 	}
 	
@@ -584,6 +601,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}
 			return null;
 		}
+		
 		
 		
 		
