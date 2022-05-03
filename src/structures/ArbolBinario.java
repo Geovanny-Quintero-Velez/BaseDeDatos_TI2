@@ -95,8 +95,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}else if(node.isLeaf()) {
 			balance(node.getParent());
 		}else {
-			node.balance();
-			balance(node.getParent());
+			if(node.balance()==null) {
+				balance(node.getParent());
+			}
+		
 		}
 		
 	}
