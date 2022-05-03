@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Person {
 	
@@ -23,12 +22,12 @@ public class Person {
 	}
 	
 	
-	public Person(String name, String lastName, String gender, LocalDate birthDate2, double height, String nationality) {
+	public Person(String name, String lastName, String gender, LocalDate birthDate1, double height, String nationality) {
 		this.name = name;
 		this.lastName = lastName;
 		fullName=name+" "+lastName;
 		this.gender = gender;
-		this.birthDate = birthDate2;
+		this.birthDate = birthDate1;
 		this.height = height;
 		this.nationality = nationality;
 	}

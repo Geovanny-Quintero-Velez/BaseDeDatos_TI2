@@ -10,7 +10,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	
 	public ArbolBinario(C comparetor) {
 		this.comparator=comparetor;
-		
 	}
 	
 	public ArbolBinario() {
@@ -19,6 +18,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	
 	public void setComparator(C comparator) {
 		this.comparator=comparator;
+	}
+	
+	public E get( E search) {
+		Node searched=new Node(search);
+		return root.search(searched).getValue();
 	}
 	
 	public void insert(E value) {
@@ -140,7 +144,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		if(root==null) {
 			return false;
 		}else {
-			return search(root,toSearch);
+			return root.search(toSearch)!=null;//search(root,toSearch);
 		}
 	}
 	
@@ -148,60 +152,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		return root.height();
 	}
 	
-	public boolean search(Node current,Node search) {
-		
-		if(current==null) {
-			return false;
-		}
-		if(current.isLeaf()) {
-			if(current.getValue()==search.getValue()) {
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			if(current.getValue()==search.getValue()) {
-				return true;
-			}else if(comparator.compare(search.getValue(),current.getValue())>=0) {
-				return search( current.getRight(),search);
-			}else {
-				return search(current.getLeft(),search);
-			}
-		}
-	}
 	
-	
-	
-	public E getElement(E value) {
-		Node toSearch=new Node(value);
-		if(root==null) {
-			return root.getValue();
-		}else {
-			return get(root,toSearch);
-		}
-	}
-	
-	private E get(Node current,Node search) {
-		
-		if(current==null) {
-			return null;
-		}
-		if(current.isLeaf()) {
-			if(current.getValue()==(search.getValue())) {
-				return current.getValue();
-			}else {
-				return null;
-			}
-		}else {
-			if(current.getValue()==search.getValue()) {
-				return current.getValue();
-			}else if(comparator.compare(search.getValue(),current.getValue())>=0) {
-				return get( current.getRight(),search);
-			}else {
-				return get(current.getLeft(),search);
-			}
-		}
-	}
 	public Node getNode(E value) {
 		Node toSearch=new Node(value);
 		if(root==null) {
@@ -238,7 +189,8 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		if(root==null) {
 			return false;
 		}else{
-			Node toDelete=getNode(value);
+			Node node=new Node(value);
+			Node toDelete=root.search(node);
 			if(toDelete==null) {
 				return false;
 			}
@@ -460,6 +412,25 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			
 		return out;
 		}
+		
+		 public Node search(Node node){
+		        if(this.value.equals(node.value)){
+		            return this;
+		        } else if (comparator.compare(node.value, value) <0){ 
+		            if (this.left == null){
+		                return  null;
+		            }else {
+		                return this.left.search(node);
+		            }
+		        }else { 
+		            if (this.right == null){
+		                return  null;
+		            }else {
+		                return this.right.search(node);
+		            }
+		        }
+		}
+		 
 		public String preOrden() {
 			String out="";
 			if(isLeaf()) {
@@ -561,23 +532,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 			}else {
 				q.setParent(null);
 			}
-			
 			 q.setRight(p);
-			 
-			 p.setParent(q);
-			 
 			 q.setLeft(c);
-			 
-			
-			 
-			 p.setLeft(b);
-			 
-			
+			 p.setLeft(b);			
 			 p.setRight(a);
-			 
-		
-			 
-			
 			 return q;
 		}
 		
