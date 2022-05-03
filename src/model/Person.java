@@ -22,12 +22,12 @@ public class Person {
 	}
 	
 	
-	public Person(String name, String lastName, String gender, LocalDate birthDate1, double height, String nationality) {
+	public Person(String name, String lastName, String gender, LocalDate birthDate, double height, String nationality) {
 		this.name = name;
 		this.lastName = lastName;
 		fullName=name+" "+lastName;
 		this.gender = gender;
-		this.birthDate = birthDate1;
+		this.birthDate = birthDate;
 		this.height = height;
 		this.nationality = nationality;
 	}
