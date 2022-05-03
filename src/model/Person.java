@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Person {
 	
@@ -11,7 +11,7 @@ public class Person {
 	private String lastName;
 	private String fullName;
 	private String gender;
-	private Date birthDate;
+	private LocalDate birthDate;
 	private double height;
 	private String nationality;
 	private Object fotografia;
@@ -22,7 +22,7 @@ public class Person {
 	}
 	
 	
-	public Person(String name, String lastName, String gender, Date birthDate, double height, String nationality) {
+	public Person(String name, String lastName, String gender, LocalDate birthDate, double height, String nationality) {
 		this.name = name;
 		this.lastName = lastName;
 		fullName=name+" "+lastName;
@@ -56,11 +56,11 @@ public class Person {
 		this.gender = gender;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

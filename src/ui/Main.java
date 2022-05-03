@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.concurrent.ThreadLocalRandom;
 
 import enums.*;
 import model.Person;
@@ -24,6 +25,12 @@ public class Main {
 	}
 	
 	public static void generatePeople() throws IOException  {
+		LocalDate actualDate = LocalDate.now();
+		LocalDate startDate = null;
+		LocalDate endDate = null;
+		LocalDate randomDate = null;
+		long start = 0;
+		long end = 0;
 		int boyNamesCounter = 0;
 		int girlNamesCounter = 0;
 		int lastNamesCounter = 0;
@@ -57,7 +64,6 @@ public class Main {
 			String lastName = "";
 			String gender = "";
 			double height = 0;
-			int age = 0;
 			
 			if(peopleGenerated<= (PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2) {
 				gender = Person.MALE;
@@ -67,12 +73,21 @@ public class Main {
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._0_TO_14_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._0_TO_14_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = boyNames.get(boyNamesCounter);
 					boyNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._0_TO_14_.getMax()+1 - AGE_DISTRIBUTION._0_TO_14_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
+			
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
 				}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
@@ -80,52 +95,88 @@ public class Main {
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._15_TO_24.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._15_TO_24.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = boyNames.get(boyNamesCounter);
 					boyNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._15_TO_24.getMax()+1 - AGE_DISTRIBUTION._15_TO_24.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = boyNames.get(boyNamesCounter);
 					boyNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._25_TO_54_.getMax()+1 - AGE_DISTRIBUTION._25_TO_54_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._55_TO_64_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._55_TO_64_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = boyNames.get(boyNamesCounter);
 					boyNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._55_TO_64_.getMax()+1 - AGE_DISTRIBUTION._55_TO_64_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._65_TO_MORE_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._65_TO_MORE_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = boyNames.get(boyNamesCounter);
 					boyNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._55_TO_64_.getMax()+1 - AGE_DISTRIBUTION._55_TO_64_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 			}else{
 				gender = Person.FEMALE;
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._0_TO_14_.getDistribution());j++) {
@@ -134,67 +185,110 @@ public class Main {
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._0_TO_14_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._0_TO_14_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = girlNames.get(girlNamesCounter);
 					girlNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._0_TO_14_.getMax()+1 - AGE_DISTRIBUTION._0_TO_14_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._15_TO_24.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._15_TO_24.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = girlNames.get(girlNamesCounter);
 					girlNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._15_TO_24.getMax()+1 - AGE_DISTRIBUTION._15_TO_24.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+				
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = girlNames.get(girlNamesCounter);
 					girlNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._25_TO_54_.getMax()+1 - AGE_DISTRIBUTION._25_TO_54_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._55_TO_64_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._55_TO_64_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = girlNames.get(girlNamesCounter);
 					girlNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._55_TO_64_.getMax()+1 - AGE_DISTRIBUTION._55_TO_64_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 				for(int j=0; j<Math.floor(((PEOPLE_TO_GENERATE / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
 					}
 					
+					startDate = actualDate.minusYears(AGE_DISTRIBUTION._65_TO_MORE_.getMax()); //start date
+				    start = startDate.toEpochDay();
+
+				    endDate = actualDate.minusYears(AGE_DISTRIBUTION._65_TO_MORE_.getMin()); //end date
+				    end = endDate.toEpochDay();
+				    
+				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+					
 					name = girlNames.get(girlNamesCounter);
 					girlNamesCounter++;
 					lastName = lastNames.get(lastNamesCounter);		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-					age = (int) (Math.random()*(AGE_DISTRIBUTION._55_TO_64_.getMax()+1 - AGE_DISTRIBUTION._55_TO_64_.getMin()));
-					Person persona = new Person(name, lastName, gender, birthDate, height, country.name());
-				}
-				
-				
+					
+					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
+					peopleGenerated++;
+					}
 			}
 		}	
 	}	
