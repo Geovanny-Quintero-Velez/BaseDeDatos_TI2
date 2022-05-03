@@ -3,11 +3,14 @@ package model;
 import java.util.Date;
 
 public class Person {
+	
+	public static final String MALE = "MALE";
+	public static final String FEMALE = "FEMALE";
 
 	private String name;
 	private String lastName;
 	private String fullName;
-	private boolean gender;
+	private String gender;
 	private Date birthDate;
 	private double height;
 	private String nationality;
@@ -19,7 +22,7 @@ public class Person {
 	}
 	
 	
-	public Person(String name, String lastName, boolean gender, Date birthDate, double height, String nationality) {
+	public Person(String name, String lastName, String gender, Date birthDate, double height, String nationality) {
 		this.name = name;
 		this.lastName = lastName;
 		fullName=name+" "+lastName;
@@ -45,11 +48,11 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public boolean isGender() {
+	public String isGender() {
 		return gender;
 	}
 
-	public void setGender(boolean gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
