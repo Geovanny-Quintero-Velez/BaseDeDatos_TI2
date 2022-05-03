@@ -1,12 +1,13 @@
 package application;
 	
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.DataBase;
+import model.Person;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +16,9 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application
 {
 	private Stage currentStage;
-	
+	DataBase mc;
 	public Main()
-	{
+	{	mc=new DataBase();
 		System.out.println("hola");
 	}
 	
@@ -112,7 +113,7 @@ public class Main extends Application
 			
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			
+			controllerz.begining(1);
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
@@ -132,7 +133,7 @@ public class Main extends Application
 			
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			
+			controllerz.begining(4);
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
@@ -152,7 +153,7 @@ public class Main extends Application
 			
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			
+			controllerz.begining(3);
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
@@ -172,7 +173,7 @@ public class Main extends Application
 			
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			
+			controllerz.begining(2);
 			Scene scene= new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
@@ -181,5 +182,10 @@ public class Main extends Application
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	public ArrayList<Person> getArrayList(int index,String value){
+		ArrayList<Person>a=mc.getFilteredList(index,value);
+		return a;
 	}
 }

@@ -103,14 +103,17 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	public ArrayList<E> getGreater(Node current,ArrayList<E> array,E value) {
 		ArrayList<E> greater=array;
-		if(comparator.compare(value, current.getValue())>=0 ) {
-			greater.add(current.getValue());
-		}
-		if(current.getRight()!=null) {
-			greater=getGreater(current.getRight(), greater, value);
-		}
-		if(current.getLeft()!=null) {
-			greater=getGreater(current.getLeft(), greater, value);
+		if(root!=null) {
+			
+			if(comparator.compare(value, current.getValue())>=0 ) {
+				greater.add(current.getValue());
+			}
+			if(current.getRight()!=null) {
+				greater=getGreater(current.getRight(), greater, value);
+			}
+			if(current.getLeft()!=null) {
+				greater=getGreater(current.getLeft(), greater, value);
+			}
 		}
 		return greater;
 	}

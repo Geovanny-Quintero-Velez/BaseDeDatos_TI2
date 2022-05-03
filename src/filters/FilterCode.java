@@ -9,7 +9,27 @@ public class FilterCode implements Comparator<Person>{
 	public int compare(Person per1, Person per2) {
 		String code1=per1.getCode();
 		String code2=per2.getCode();
-		return code1.compareTo(code2)
-		;
+		boolean flag=true;
+		for(int j=0;j<code1.length()&&j<code2.length()&&flag;j++) {
+			
+			if(code1.charAt(j)==code2.charAt(j)) {
+				flag=true;
+			}else if(code1.charAt(j)>code2.charAt(j)){
+				flag=false;
+				return 1;
+			}else {
+				return -1;
+			}
+		}
+		if(!flag) {
+			if(code1.length()>code2.length()) {
+				return 1;
+			}else if(code1.length()<code2.length()){
+				return -1;
+			}else {
+				return 0;
+			}
+		}
+		return 1;
 	}
 }

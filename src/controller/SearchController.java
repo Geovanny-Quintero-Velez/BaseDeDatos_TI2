@@ -2,63 +2,72 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import model.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import application.Main;
 
-public class SearchController<E>{
+public class SearchController{
+	
+	public final int MAX_SEARCHS=100;
 	
 	public ArrayList<Person> filtered;
-	private Main main;
+	Main main;
 	public int index;
 	@FXML
-	public ComboBox<Person> search;
+	public ComboBox<String> search;
 	
-	@FXML
-	MenuButton filter;
-	
-	@FXML
-	MenuItem name;
-	@FXML
-	MenuItem code;
-	@FXML
-	MenuItem lastName;
-	@FXML
-	MenuItem fullName;
-	@FXML
-	public void byCode() {
-		index=1;
-	}
-	@FXML
-	public void byName() {
-		index=2;
-	}
-	@FXML
-	public void byLastName() {
-		index=3;
+	public void begining(int index) {
+		this.index=index;
+		search.visibleRowCountProperty().set(MAX_SEARCHS);
 	}
 	
-	@FXML
-	public void byFullName() {
-		index=4;
+	public void setMain(Main main) {
+		this.main=main;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@FXML
 	public void actualize() {
-		if(filter.isPressed()) {
-			filtered=(ArrayList<Person>) main.getArrayList(index);
-			search.getItems().clear();
-			search.getItems().addAll(filtered);
+		String searchS=search.getEditor().getText();
+		filtered= main.getArrayList(index,searchS);
+		ArrayList<String>temp=new ArrayList<>();
+		search.getItems().clear();
+		for(int i=0;i<filtered.size();i++) {
+			String toAdd="";
+			switch(index) {
+			case 1:
+				toAdd=filtered.get(i).getCode();
+				break;
+			case 2:
+				toAdd=filtered.get(i).getName();
+				break;
+			case 3:
+				toAdd=filtered.get(i).getLastName();
+				break;
+			case 4:
+				toAdd=filtered.get(i).getFullName();
+				break;
+			}
+			boolean flag=false;
+			for(int j=0;j<searchS.length()&&j<toAdd.length();j++) {
+				if((toAdd.charAt(j)==searchS.charAt(j))) {
+					flag=true;
+				}else {
+					flag=false;
+					break;
+				}
+			}
+			if(searchS.length()>toAdd.length()) {
+				flag=false;
+			}
+			if(flag) {
+				temp.add(toAdd);
+			}
+			
 		}
-	}
-	
-	public void setMain(Main main)
-	{
-		this.main = main;
+		search.getItems().addAll(temp);
+		
 	}
 }
