@@ -22,7 +22,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	
 	public E get( E search) {
 		Node searched=new Node(search);
-		return root.search(searched).getValue();
+		Node nodeFound=root.search(searched);
+		if(nodeFound!=null) {
+			return nodeFound.getValue();
+		}
+		return null;
 	}
 	
 	public void insert(E value) {
