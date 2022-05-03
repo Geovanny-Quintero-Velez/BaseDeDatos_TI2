@@ -1,9 +1,13 @@
 package application;
 	
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -33,6 +37,32 @@ public class Main extends Application
 	public Main()
 	{	mc=new DataBase();
 		System.out.println("hola");
+	}
+	
+	public void serialize() {
+		try {
+			FileOutputStream fos = new FileOutputStream("..\\file\\PeopleRecords.txt\"");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(mc);
+			oos.close();
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deserialize() {
+		try {
+			FileInputStream fis = new FileInputStream("..\\file\\PeopleRecords.txt\"");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			mc = (DataBase) ois.readObject();
+			ois.close();
+			fis.close();
+		} catch (IOException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -221,7 +251,7 @@ public class Main extends Application
 		BufferedReader namesLector = null;
 		BufferedReader lastNamesLector = null;
 		try {
-			namesLector = new BufferedReader(new FileReader("..\\..\\data\\babynames-clean.csv"));
+			namesLector = new BufferedReader(new FileReader("..\\..\\data\\babynames-clean.csv\""));
 			lastNamesLector = new BufferedReader(new FileReader("..\\..\\data\\Names_2010Census.csv"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
