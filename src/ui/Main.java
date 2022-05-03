@@ -1,32 +1,48 @@
 package ui;
 
-import java.util.Comparator;
-
-import structures.ArbolBinario;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
+	
+	public static final int PEOPLE_TO_GENERATE = 1000000;
+	public static final int COUNTRIES_AMOUNT = 35;
+	public static int peopleGenerated;
 
-	//(int) (Math.random()*(100-0) + 0
 	public static void main(String[] args) {
-		ArbolBinario<Integer, CualquierCosa> arbolito= new ArbolBinario<>(new CualquierCosa());
-		for(int i=1; i<100; i++) {
-			arbolito.insert(3) ;
-			arbolito.insert(9) ;
-			arbolito.insert(2) ;
-			arbolito.insert(1) ;
-			arbolito.insert(0) ;
+		for(int i=0;i<1000000;i++) {
+			System.out.println("i = "+i);
 		}
-		System.out.println(arbolito.inorderReverse());
-		System.out.println(arbolito.isBalanced());
-		System.out.println(arbolito.factor());
 	}
 	
-	public static class CualquierCosa implements Comparator<Integer> {
-
-		@Override
-		public int compare(Integer arg0, Integer arg1) {
-			return arg0 - arg1;
+	public static void generatePeople() throws IOException  {
+		ArrayList<String> boyNames = new ArrayList<>();
+		ArrayList<String> girlNames = new ArrayList<>();
+		String namesLine = "";
+		String lastNamesLine = "";
+		String[] names = null;
+		String[] lastNames;
+		BufferedReader namesLector = null;
+		BufferedReader lastNamesLector;
+		try {
+			namesLector = new BufferedReader(new FileReader("..\\..\\data\\babynames-clean.csv"));
+			lastNamesLector = new BufferedReader(new FileReader("..\\..\\data\\Names_2010Census.csv"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		do {
+			names = (namesLector.readLine()).split(",");	
+			boyNames.add(names[0]);
+		}while(!(names[(names.length) -1].equals("girl")));
+		while((namesLine = namesLector.readLine())!=null) {
+			names = namesLine.split(",");
+			girlNames.add(names[0]);
+		}
+		
 		
 	}
 }
