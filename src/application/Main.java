@@ -232,7 +232,7 @@ public class Main extends Application
 		return a;
 	}
 
-	public static void generatePeople(int peopleToGenerate) throws IOException  {
+	public void generatePeople(int peopleToGenerate) throws IOException  {
 		LocalDate actualDate = LocalDate.now();
 		LocalDate startDate = null;
 		LocalDate endDate = null;
@@ -251,8 +251,8 @@ public class Main extends Application
 		BufferedReader namesLector = null;
 		BufferedReader lastNamesLector = null;
 		try {
-			namesLector = new BufferedReader(new FileReader("..\\..\\data\\babynames-clean.csv\""));
-			lastNamesLector = new BufferedReader(new FileReader("..\\..\\data\\Names_2010Census.csv"));
+			namesLector = new BufferedReader(new FileReader("data\\babynames-clean.csv"));
+			lastNamesLector = new BufferedReader(new FileReader("data\\Names_2010Census.csv"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
