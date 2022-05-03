@@ -27,7 +27,7 @@ public class Person {
 		this.lastName = lastName;
 		fullName=name+" "+lastName;
 		this.gender = gender;
-		this.birthDate = birthDate;
+		this.birthDate = birthDate2;
 		this.height = height;
 		this.nationality = nationality;
 	}
