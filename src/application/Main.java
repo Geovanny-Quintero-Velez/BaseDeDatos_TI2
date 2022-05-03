@@ -102,4 +102,84 @@ public class Main extends Application
 			e.printStackTrace();
 		}
 	}
+
+	public void searchByCode() {
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
+			root = (BorderPane)loader.load();
+			
+			SearchController controllerz = loader.getController();
+			controllerz.setMain(this);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			currentStage.setScene(scene);
+			currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void searchByFullName() {
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
+			root = (BorderPane)loader.load();
+			
+			SearchController controllerz = loader.getController();
+			controllerz.setMain(this);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			currentStage.setScene(scene);
+			currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	public void searchByLastName() {
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
+			root = (BorderPane)loader.load();
+			
+			SearchController controllerz = loader.getController();
+			controllerz.setMain(this);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			currentStage.setScene(scene);
+			currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	public void searchByName() {
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
+			root = (BorderPane)loader.load();
+			
+			SearchController controllerz = loader.getController();
+			controllerz.setMain(this);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			currentStage.setScene(scene);
+			currentStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
 }

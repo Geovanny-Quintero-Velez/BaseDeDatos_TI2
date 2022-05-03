@@ -13,7 +13,7 @@ import application.Main;
 public class SearchController<E>{
 	
 	public ArrayList<Person> filtered;
-	Main main;
+	private Main main;
 	public int index;
 	@FXML
 	public ComboBox<Person> search;
@@ -55,5 +55,10 @@ public class SearchController<E>{
 			search.getItems().clear();
 			search.getItems().addAll(filtered);
 		}
+	}
+	
+	public void setMain(Main main)
+	{
+		this.main = main;
 	}
 }
