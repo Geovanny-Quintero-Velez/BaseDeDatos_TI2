@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="290.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="290.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddPeopleController">
    <bottom>
       <AnchorPane prefHeight="290.0" prefWidth="249.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,8 +22,8 @@
                   <Font name="Candara Italic" size="19.0" />
                </font></Label>
             <DatePicker fx:id="dateSelector" layoutX="21.0" layoutY="106.0" prefHeight="26.0" prefWidth="139.0" promptText="Birthdate" />
-            <TextField fx:id="hourField" alignment="CENTER" layoutX="62.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="Name" />
-            <TextField fx:id="minuteField" alignment="CENTER" layoutX="154.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="S. Name" />
+            <TextField fx:id="nameField" alignment="CENTER" layoutX="62.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="Name" />
+            <TextField fx:id="lastNameField" alignment="CENTER" layoutX="154.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="L. Name" />
             <ComboBox fx:id="genderSelector" layoutX="175.0" layoutY="107.0" prefHeight="25.0" prefWidth="85.0" promptText="Gender" visibleRowCount="5" />
             <ComboBox fx:id="nationatilySelector" layoutX="72.0" layoutY="153.0" prefHeight="25.0" prefWidth="140.0" promptText="Nationality" />
             <TextField fx:id="heigthField" alignment="CENTER" layoutX="146.0" layoutY="197.0" prefHeight="30.0" prefWidth="60.0" promptText="Meters" />

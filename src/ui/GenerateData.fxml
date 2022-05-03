@@ -7,30 +7,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-   <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GenerateDatController">
+   <center>
+      <AnchorPane prefHeight="175.0" prefWidth="235.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="GenerateDataButton" layoutX="36.0" layoutY="117.0" mnemonicParsing="false" onAction="#login" prefHeight="7.0" prefWidth="129.0" text="Generate data">
+            <Label layoutX="57.0" layoutY="31.0" text="Welcome">
                <font>
-                  <Font name="Candara Italic" size="18.0" />
-               </font></Button>
-            <Label layoutX="56.0" layoutY="22.0" text="Welcome" textAlignment="CENTER">
-               <font>
-                  <Font name="Candara Italic" size="24.0" />
+                  <Font name="System Bold" size="30.0" />
                </font></Label>
-            <Button fx:id="ExitButton" layoutX="146.0" layoutY="159.0" mnemonicParsing="false" onAction="#login" prefHeight="20.0" prefWidth="42.0" text="Exit" textOverrun="WORD_ELLIPSIS">
-               <font>
-                  <Font name="Candara Italic" size="13.0" />
-               </font>
-            </Button>
-            <TextField fx:id="NumOfRegistersFIeld" layoutX="84.0" layoutY="75.0" prefHeight="25.0" prefWidth="102.0" promptText="Max : 1 Billion" />
-            <Label layoutX="14.0" layoutY="73.0" prefHeight="30.0" prefWidth="65.0" text="#Registers:" textAlignment="CENTER">
-               <font>
-                  <Font name="Candara Italic" size="14.0" />
-               </font>
-            </Label>
+            <Label layoutX="20.0" layoutY="102.0" text="#Registers :" />
+            <TextField fx:id="numOfRegistersField" layoutX="88.0" layoutY="98.0" promptText="Max : 1 Billion" />
+            <Button fx:id="generateDataButton" layoutX="76.0" layoutY="149.0" mnemonicParsing="false" onAction="#generateData" text="Generate Data" />
          </children>
       </AnchorPane>
-   </bottom>
+   </center>
 </BorderPane>
