@@ -1,8 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import filters.FilterCode;
 import filters.FilterFullName;
 import filters.FilterLastName;
@@ -24,6 +22,54 @@ public class DataBase {
 	
 	
 	
+	public ArbolBinario<Person, FilterCode> getFilterByCode() {
+		return filterByCode;
+	}
+
+
+
+	public void setFilterByCode(ArbolBinario<Person, FilterCode> filterByCode) {
+		this.filterByCode = filterByCode;
+	}
+
+
+
+	public ArbolBinario<Person, FilterName> getFilterByName() {
+		return filterByName;
+	}
+
+
+
+	public void setFilterByName(ArbolBinario<Person, FilterName> filterByName) {
+		this.filterByName = filterByName;
+	}
+
+
+
+	public ArbolBinario<Person, FilterLastName> getFilterByLastName() {
+		return filterByLastName;
+	}
+
+
+
+	public void setFilterByLastName(ArbolBinario<Person, FilterLastName> filterByLastName) {
+		this.filterByLastName = filterByLastName;
+	}
+
+
+
+	public ArbolBinario<Person, FilterFullName> getFilterByFullName() {
+		return filterByFullName;
+	}
+
+
+
+	public void setFilterByFullName(ArbolBinario<Person, FilterFullName> filterByFullName) {
+		this.filterByFullName = filterByFullName;
+	}
+
+
+
 	public ArrayList<Person> getFilteredList(int index, String param){
 		
 		switch(index) {
@@ -67,6 +113,8 @@ public class DataBase {
 		
 		
 	}
+
+
 	
 	
 }

@@ -5,7 +5,6 @@ import javafx.scene.control.ComboBox;
 import model.Person;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import application.Main;
 
