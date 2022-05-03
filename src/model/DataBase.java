@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import filters.FilterCode;
 import filters.FilterFullName;
@@ -7,7 +8,10 @@ import filters.FilterLastName;
 import filters.FilterName;
 import structures.ArbolBinario;
 
-public class DataBase {
+public class DataBase implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	ArbolBinario<Person,FilterCode> filterByCode;
 	ArbolBinario<Person,FilterName> filterByName;
 	ArbolBinario<Person,FilterLastName> filterByLastName;
