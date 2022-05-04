@@ -55,13 +55,42 @@ public class AddPeopleController
 		genderSelector.getItems().add("Male");
 		genderSelector.getItems().add("Female");
 
-		nationatilySelector.getItems().add("Asia");
-		nationatilySelector.getItems().add("Africa");
-		nationatilySelector.getItems().add("Europe");
-		nationatilySelector.getItems().add("North America");
-		nationatilySelector.getItems().add("South America");
-		nationatilySelector.getItems().add("Australia/Oceania");
-		nationatilySelector.getItems().add("Antartica");
+		nationatilySelector.getItems().add("UNITED STATES");
+		nationatilySelector.getItems().add("CANADA");
+		nationatilySelector.getItems().add("MEXICO");
+		nationatilySelector.getItems().add("BELICE");
+		nationatilySelector.getItems().add("COSTA RICA");
+		nationatilySelector.getItems().add("EL SALVADOR");
+		nationatilySelector.getItems().add("GUATEMALA");
+		nationatilySelector.getItems().add("HONDURAS");
+		nationatilySelector.getItems().add("NICARAGUA");
+		nationatilySelector.getItems().add("PANAMA");
+		nationatilySelector.getItems().add("ARGENTINA");
+		nationatilySelector.getItems().add("BOLIVIA");
+		nationatilySelector.getItems().add("BRASIL");
+		nationatilySelector.getItems().add("CHILE");
+		nationatilySelector.getItems().add("COLOMBIA");
+		nationatilySelector.getItems().add("ECUADOR");
+		nationatilySelector.getItems().add("PARAGUAY");
+		nationatilySelector.getItems().add("SURINAM");
+		nationatilySelector.getItems().add("PERU");
+		nationatilySelector.getItems().add("TRINIDAD Y TOBAGO");
+		nationatilySelector.getItems().add("URUGUAY");
+		nationatilySelector.getItems().add("VENEZUELA");
+		nationatilySelector.getItems().add("ANTIGUA Y BARBUDA");
+		nationatilySelector.getItems().add("BAHAMAS");
+		nationatilySelector.getItems().add("BARBADOS");
+		nationatilySelector.getItems().add("CUBA");
+		nationatilySelector.getItems().add("DOMINICA");
+		nationatilySelector.getItems().add("GRANADA");
+		nationatilySelector.getItems().add("GUYANA");
+		nationatilySelector.getItems().add("HAITI");
+		nationatilySelector.getItems().add("JAMAICA");
+		nationatilySelector.getItems().add("REPUBLICA DOMINICANA");
+		nationatilySelector.getItems().add("SAN CRISTOBAL Y NIEVES");
+		nationatilySelector.getItems().add("SAN VICENTE Y LAS GRANADINAS");
+		nationatilySelector.getItems().add("SANTA LUCIA");
+		nationatilySelector.getItems().add("PUERTO RICO");
 	}
 	
 	public Main getMain() {

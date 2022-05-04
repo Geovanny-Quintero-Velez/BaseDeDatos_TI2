@@ -36,8 +36,8 @@ public class Main extends Application
 	private Stage currentStage;
 	static DataBase mc;
 	public Main()
-	{	mc=new DataBase();
-		System.out.println("hola");
+	{	
+		mc=new DataBase();
 	}
 	
 	public void serialize() {
@@ -160,6 +160,8 @@ public class Main extends Application
 			controllerz.setMain(this);
 			
 			root.setCenter(newRoot);
+			currentStage.setHeight(350);
+			currentStage.setWidth(300);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -177,7 +179,7 @@ public class Main extends Application
 			controllerz.setMain(this);
 			controllerz.begining(1);
 			root.setCenter(newRoot);
-			currentStage.setHeight(350);
+			currentStage.setHeight(250);
 			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
@@ -195,7 +197,7 @@ public class Main extends Application
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
 			controllerz.begining(4);
-			currentStage.setHeight(350);
+			currentStage.setHeight(250);
 			currentStage.setWidth(400);
 			root.setCenter(newRoot);
 			currentStage.show();
@@ -223,7 +225,7 @@ public class Main extends Application
 			controllerz.setMain(this);
 			controllerz.begining(3);
 			root.setCenter(newRoot);
-			currentStage.setHeight(350);
+			currentStage.setHeight(250);
 			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
@@ -243,7 +245,7 @@ public class Main extends Application
 			controllerz.begining(2);
 			
 			root.setCenter(newRoot);
-			currentStage.setHeight(350);
+			currentStage.setHeight(250);
 			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
