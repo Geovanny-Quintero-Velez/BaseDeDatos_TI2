@@ -46,7 +46,7 @@ public class AddPeopleController
 		
 		int gender = genderSelector.getSelectionModel().getSelectedIndex();
 		int nationatily = nationatilySelector.getSelectionModel().getSelectedIndex();
-
+		
 		main.showMenu();
 	}
 
