@@ -42,7 +42,7 @@ public class Main extends Application
 	
 	public void serialize() {
 		try {
-			FileOutputStream fos = new FileOutputStream("..\\file\\PeopleRecords.txt\"");
+			FileOutputStream fos = new FileOutputStream("..\\file\\PeopleRecords.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(mc);
 			oos.close();
@@ -55,7 +55,7 @@ public class Main extends Application
 	
 	public void deserialize() {
 		try {
-			FileInputStream fis = new FileInputStream("..\\file\\PeopleRecords.txt\"");
+			FileInputStream fis = new FileInputStream("..\\file\\PeopleRecords.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			mc = (DataBase) ois.readObject();
 			ois.close();
@@ -294,6 +294,11 @@ public class Main extends Application
 		BufferedReader lastNamesLector = null;
 		String [] names=null;
 		Random r = new Random();
+        
+		String name = "";
+		String lastName = "";
+		String gender = "";
+		double height = 0; 
 		try {
 			namesLector = new BufferedReader(new FileReader("data\\babynames-clean.csv"));
 			lastNamesLector = new BufferedReader(new FileReader("data\\Names_2010Census.csv"));
@@ -315,11 +320,6 @@ public class Main extends Application
 		}
 		
 		for(COUNTRIES country: COUNTRIES.values()) {
-			
-			String name = "";
-			String lastName = "";
-			String gender = "";
-			double height = 0;
 			
 			if(peopleGenerated<= (peopleToGenerate / COUNTRIES_AMOUNT)/2) {
 				gender = Person.MALE;
@@ -557,6 +557,30 @@ public class Main extends Application
 					}
 			}
 			
+			
+		}
+		for(int i=0; i< peopleToGenerate-peopleGenerated;i++) {
+			if(girlNamesCounter == girlNames.size()) {
+				girlNamesCounter = 0;
+				lastNamesCounter++;
+			}
+			
+			startDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMax()); //start date
+		    start = startDate.toEpochDay();
+
+		    endDate = actualDate.minusYears(AGE_DISTRIBUTION._25_TO_54_.getMin()); //end date
+		    end = endDate.toEpochDay();
+		    
+		    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
+			
+			name = girlNames.get(girlNamesCounter);
+			girlNamesCounter++;
+			lastName = lastNames.get(lastNamesCounter);		
+			height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
+			
+			Person persona = new Person(name, lastName, gender, randomDate, height, COUNTRIES.UNITED_STATES.name());
+			people.add(persona);
+			peopleGenerated++;
 		}
 		Hilo hilo1=new Hilo(mc.getFilterByCode(),people);
 		Hilo hilo2=new Hilo(mc.getFilterByFullName(),people);
