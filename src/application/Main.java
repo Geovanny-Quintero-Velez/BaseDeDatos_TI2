@@ -139,6 +139,29 @@ public class Main extends Application
 		}
 	}
 	
+	public void showEditePeople(Person person)
+	{
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/EditPeople.fxml"));
+			root = (BorderPane)loader.load();
+			
+			EditePeopleController controller = loader.getController();
+			controller.setMain(this);
+			controller.setPerson(person);
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+			currentStage = stage;
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void showAddPeople()
 	{
 		try {
@@ -244,6 +267,10 @@ public class Main extends Application
 	public static ArrayList<Person> getArrayList(int index,String value){
 		ArrayList<Person>a=mc.getFilteredList(index,value);
 		return a;
+	}
+	
+	public Person getPersonInList(int index,String value){
+		return mc.getPersonInList(index,value);
 	}
 	
 	public ArrayList<Person> getList(int index,String value){

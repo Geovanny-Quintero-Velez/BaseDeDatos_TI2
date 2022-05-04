@@ -1,6 +1,8 @@
 package controller;
 
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import model.Person;
 
@@ -8,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import application.Main;
-import filters.FilterName;
 
 public class SearchController{
+	@FXML
+	Button edit;
 	
 	public final int MAX_SEARCHS=100;
-	
+	public final int MIN_SEARCHS=20;
 	public ArrayList<Person> filtered;
 	Main main;
 	public int index;
@@ -25,6 +28,17 @@ public class SearchController{
 		search.visibleRowCountProperty().set(MAX_SEARCHS);
 	}
 	
+	@FXML
+	public void editElement() {
+		Person person=main.getPersonInList(index,search.getEditor().getText());
+		System.out.println(person);
+		if(person!=null) {
+			
+			main.showEditePeople(person);
+		}
+		
+	}
+	
 	public void setMain(Main main) {
 		this.main=main;
 	}
@@ -34,6 +48,7 @@ public class SearchController{
 		String searchS=search.getEditor().getText();
 		
 		filtered= main.getList(index,searchS);
+		ArrayList<Person>people=new ArrayList<>();
 		ArrayList<String>temp=new ArrayList<>();
 		search.getItems().clear();
 		String toAdd="";
@@ -66,11 +81,18 @@ public class SearchController{
 			}
 			if(flag) {
 				temp.add(toAdd);
+				people.add(filtered.get(i));
 			}
 			
 		}
 		Collections.sort(temp);
 		search.getItems().addAll(temp);
-		
+		if(search.getItems().size()<=MIN_SEARCHS) {
+			edit.setVisible(true);
+			edit.setDisable(false);
+		}else {
+			edit.setVisible(false);
+			edit.setDisable(true);
+		}
 	}
 }

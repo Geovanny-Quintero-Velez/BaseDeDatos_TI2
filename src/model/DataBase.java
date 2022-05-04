@@ -90,6 +90,21 @@ public class DataBase implements Serializable{
 		return null;
 	}
 	
+	public Person getPersonInList(int index, String param){
+		
+		switch(index) {
+		case 1:
+			return getPersonCode(param);
+		case 2:
+			return getPersonName(param);
+		case 3:
+			return getPersonLastName(param);
+		case 4:
+			return getPersonFullname(param);
+		}
+		return null;
+	}
+	
 	public ArrayList<Person> getFilterCode(String code){
 		
 		Person mediator=new Person();
@@ -113,6 +128,32 @@ public class DataBase implements Serializable{
 		Person mediator=new Person();
 		mediator.setFullName(name);
 		return filterByFullName.getGreater(mediator);
+	}
+	
+public Person getPersonCode(String code){
+		
+		Person mediator=new Person();
+		mediator.setCode(code);
+		return filterByCode.get(mediator);
+	}
+	
+	public Person getPersonName(String name){
+		Person mediator=new Person();
+		mediator.setName(name);
+		System.out.println(name);
+		return filterByName.get(mediator);
+	}
+	
+	public Person getPersonLastName(String name){
+		Person mediator=new Person();
+		mediator.setLastName(name);
+		return filterByLastName.get(mediator);
+	}
+	
+	public Person getPersonFullname(String name){
+		Person mediator=new Person();
+		mediator.setFullName(name);
+		return filterByFullName.get(mediator);
 	}
 	
 	public void run() {
