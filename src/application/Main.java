@@ -258,7 +258,7 @@ public class Main extends Application
 		return a;
 	}
 	
-	public Person getPersonInList(int index,String value){
+	public Person getPersonInList(int index,Person value){
 		return mc.getPersonInList(index,value);
 	}
 	

@@ -304,10 +304,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	
-	public Node tryGs() {
-		Node a=root;
-		return getSuccesor(root,a);
-	}
 	public Node tryGsa() {
 		Node a=root;
 		return getAntecesor(root,a);
@@ -420,7 +416,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 		
 		 public Node search(Node node){
-		        if(this.value.equals(node.value)){
+		        if(this.value==node.value){
 		            return this;
 		        } else if (comparator.compare(node.value, value) <0){ 
 		            if (this.left == null){

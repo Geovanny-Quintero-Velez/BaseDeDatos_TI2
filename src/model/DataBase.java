@@ -90,7 +90,7 @@ public class DataBase implements Serializable{
 		return null;
 	}
 	
-	public Person getPersonInList(int index, String param){
+	public Person getPersonInList(int index, Person param){
 		
 		switch(index) {
 		case 1:
@@ -130,30 +130,21 @@ public class DataBase implements Serializable{
 		return filterByFullName.getGreater(mediator);
 	}
 	
-public Person getPersonCode(String code){
+	public Person getPersonCode(Person code){
 		
-		Person mediator=new Person();
-		mediator.setCode(code);
-		return filterByCode.get(mediator);
+		return filterByCode.get(code);
 	}
 	
-	public Person getPersonName(String name){
-		Person mediator=new Person();
-		mediator.setName(name);
-		System.out.println(name);
-		return filterByName.get(mediator);
+	public Person getPersonName(Person name){
+		return filterByName.get(name);
 	}
 	
-	public Person getPersonLastName(String name){
-		Person mediator=new Person();
-		mediator.setLastName(name);
-		return filterByLastName.get(mediator);
+	public Person getPersonLastName(Person name){
+		return filterByLastName.get(name);
 	}
 	
-	public Person getPersonFullname(String name){
-		Person mediator=new Person();
-		mediator.setFullName(name);
-		return filterByFullName.get(mediator);
+	public Person getPersonFullname(Person name){
+		return filterByFullName.get(name);
 	}
 	
 	public void run() {

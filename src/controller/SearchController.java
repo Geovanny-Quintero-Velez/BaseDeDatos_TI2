@@ -8,8 +8,13 @@ import model.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import application.Main;
+import filters.FilterCode;
+import filters.FilterFullName;
+import filters.FilterLastName;
+import filters.FilterName;
 
 public class SearchController{
 	@FXML
@@ -30,7 +35,38 @@ public class SearchController{
 	
 	@FXML
 	public void editElement() {
-		Person person=main.getPersonInList(index,search.getEditor().getText());
+		Comparator<Person> comp=null;;
+		switch(index) {
+		case 1:
+			comp=new FilterCode();
+			break;
+		case 2:
+			comp=new FilterName();
+			break;
+		case 3:
+			comp=new FilterLastName();
+			break;
+		case 4:
+			comp=new FilterFullName();
+			break;
+		}
+		String var=search.getEditor().getText();
+		Person toSearch=new Person();
+		toSearch.setName(var);
+		toSearch.setCode(var);
+		toSearch.setLastName(var);
+		toSearch.setFullName(var);
+		Person toFind=null;
+		for(Person person:filtered) {
+			if(comp.compare(person, toSearch)==0) {
+				toFind=person;
+				if(toFind!=null) {
+					break;
+				}
+			}
+		}
+		System.out.println();
+		Person person=main.getPersonInList(index,toFind);
 		System.out.println(person);
 		if(person!=null) {
 			
