@@ -416,7 +416,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 		
 		 public Node search(Node node){
-		        if(comparator.compare(node.value, value)==0){
+		        if(comparator.compare(node.value,value)==0){
 		            return this;
 		        } else if (comparator.compare(node.value, value) <0){ 
 		            if (this.left == null){

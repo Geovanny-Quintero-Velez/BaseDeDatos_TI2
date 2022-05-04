@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import controller.*;
@@ -69,7 +70,6 @@ public class Main extends Application
 	public void start(Stage primaryStage) {
 		try {
 			mc=new DataBase();
-			generatePeople(100000);
 			showGenerateData();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -212,6 +212,14 @@ public class Main extends Application
 		}		
 	}
 
+	public void delete(Person person) {
+		mc.delete(person);
+	}
+	
+	public void insert(Person person) {
+		mc.insert(person);
+	}
+	
 	public void searchByLastName() {
 		try {
 			BorderPane root;
@@ -285,6 +293,7 @@ public class Main extends Application
 		BufferedReader namesLector = null;
 		BufferedReader lastNamesLector = null;
 		String [] names=null;
+		Random r = new Random();
 		try {
 			namesLector = new BufferedReader(new FileReader("data\\babynames-clean.csv"));
 			lastNamesLector = new BufferedReader(new FileReader("data\\Names_2010Census.csv"));
@@ -300,8 +309,9 @@ public class Main extends Application
 		while((namesLine = namesLector.readLine())!=null) {
 			girlNames.add((namesLine.split(","))[0]);
 		}
+		lastNamesLector.readLine();
 		while((lastNamesLine = lastNamesLector.readLine())!=null) {
-			lastNames.add((lastNamesLine.split(","))[0]);
+			lastNames.add(lastNamesLine.split(",")[0]);
 		}
 		
 		for(COUNTRIES country: COUNTRIES.values()) {
@@ -327,11 +337,11 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = boyNames.get(boyNamesCounter);
+					name = boyNames.get(r.nextInt(boyNames.size()));
 					boyNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
-			
+					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
@@ -350,9 +360,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = boyNames.get(boyNamesCounter);
+					name = boyNames.get(r.nextInt(boyNames.size()));
 					boyNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -373,9 +383,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = boyNames.get(boyNamesCounter);
+					name = boyNames.get(r.nextInt(boyNames.size()));
 					boyNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -396,9 +406,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = boyNames.get(boyNamesCounter);
+					name = boyNames.get(r.nextInt(boyNames.size()));
 					boyNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -419,9 +429,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = boyNames.get(boyNamesCounter);
+					name = boyNames.get(r.nextInt(boyNames.size()));
 					boyNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -444,9 +454,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = girlNames.get(girlNamesCounter);
+					name = girlNames.get(r.nextInt(girlNames.size()));
 					girlNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -467,9 +477,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = girlNames.get(girlNamesCounter);
+					name = girlNames.get(r.nextInt(girlNames.size()));
 					girlNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 				
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -490,9 +500,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = girlNames.get(girlNamesCounter);
+					name = girlNames.get(r.nextInt(girlNames.size()));
 					girlNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -513,9 +523,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = girlNames.get(girlNamesCounter);
+					name = girlNames.get(r.nextInt(girlNames.size()));
 					girlNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -536,9 +546,9 @@ public class Main extends Application
 				    
 				    randomDate = LocalDate.ofEpochDay(ThreadLocalRandom.current().longs(start, end).findAny().getAsLong());
 					
-					name = girlNames.get(girlNamesCounter);
+					name = girlNames.get(r.nextInt(girlNames.size()));
 					girlNamesCounter++;
-					lastName = lastNames.get(lastNamesCounter);		
+					lastName = lastNames.get(r.nextInt(lastNames.size()));		
 					height = Math.round((MIN_HEIGHT + (MAX_HEIGHT-MIN_HEIGHT)*Math.random())*100.0)/100.0;
 					
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
@@ -573,6 +583,10 @@ public class Main extends Application
 		public void run() {
 			for(int i=0;i<people.size();i++) {
 				toAddElements.insert(people.get(i));
+			}
+			System.out.println("Termino");
+			for(Person i:people) {
+				System.out.println(i.getName());
 			}
 		}
 	}

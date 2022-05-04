@@ -18,6 +18,7 @@ public class FilterFullName implements Comparator<Person>{
 				flag=false;
 				return 1;
 			}else {
+				flag=false;
 				return -1;
 			}
 		}
@@ -29,6 +30,9 @@ public class FilterFullName implements Comparator<Person>{
 			}else {
 				return 0;
 			}
+		}
+		if(name1.equals(name2)) {
+			return 0;
 		}
 		return 1;
 	}

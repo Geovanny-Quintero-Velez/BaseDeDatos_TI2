@@ -8,8 +8,13 @@ import model.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import application.Main;
+import filters.FilterCode;
+import filters.FilterFullName;
+import filters.FilterLastName;
+import filters.FilterName;
 
 
 public class SearchController{
@@ -60,10 +65,10 @@ public class SearchController{
 				}
 			}
 		}
-		System.out.println(toFind.getName());
+		
 		Person person=main.getPersonInList(index,toFind);
 		System.out.println(person);
-		if(person!=null) {	
+		if(person!=null) {
 			main.showEditePeople(person);
 		}
 	}
@@ -81,22 +86,28 @@ public class SearchController{
 		ArrayList<String>temp=new ArrayList<>();
 		search.getItems().clear();
 		String toAdd="";
-		for(int i=0;i<filtered.size();i++) {
+		
+		for(int i=0;i<filtered.size()&&i<MAX_SEARCHS;i++) {
 			switch(index) {
 			case 1:
 				toAdd=filtered.get(i).getCode();
+				
 				break;
 			case 2:
 				toAdd=filtered.get(i).getName();
+				
 				break;
 			case 3:
 				toAdd=filtered.get(i).getLastName();
+			
 				break;
 			case 4:
 				toAdd=filtered.get(i).getFullName();
+				
 				break;
 			}
 			boolean flag=false;
+			System.out.println(toAdd);
 			for(int j=0;j<searchS.length()&&j<toAdd.length();j++) {
 				if((toAdd.charAt(j)==searchS.charAt(j))) {
 					flag=true;
@@ -120,6 +131,10 @@ public class SearchController{
 			edit.setVisible(true);
 			edit.setDisable(false);
 		}else {
+			edit.setVisible(false);
+			edit.setDisable(true);
+		}
+		if(search.getItems().size()==0) {
 			edit.setVisible(false);
 			edit.setDisable(true);
 		}

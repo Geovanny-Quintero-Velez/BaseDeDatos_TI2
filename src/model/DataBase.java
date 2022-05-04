@@ -29,8 +29,20 @@ public class DataBase implements Serializable{
 	public ArbolBinario<Person, FilterCode> getFilterByCode() {
 		return filterByCode;
 	}
-
-
+	
+	public void delete(Person person) {
+		filterByCode.delete(person);
+		filterByName.delete(person);
+		filterByLastName.delete(person);
+		filterByFullName.delete(person);
+	}
+	
+	public void insert(Person person) {
+		filterByCode.insert(person);
+		filterByName.insert(person);
+		filterByLastName.insert(person);
+		filterByFullName.insert(person);
+	}
 
 	public void setFilterByCode(ArbolBinario<Person, FilterCode> filterByCode) {
 		this.filterByCode = filterByCode;

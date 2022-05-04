@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Person implements Serializable{
 	
@@ -33,6 +34,7 @@ public class Person implements Serializable{
 		this.birthDate = birthDate;
 		this.height = height;
 		this.nationality = nationality;
+		code = UUID.randomUUID().toString();
 	}
 
 	public String getName() {

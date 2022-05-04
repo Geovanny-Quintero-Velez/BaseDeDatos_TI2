@@ -10,7 +10,6 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 
 import application.Main;
-import javafx.event.ActionEvent;
 
 public class GenerateDatController {
 	
@@ -38,13 +37,15 @@ public class GenerateDatController {
 		else
 		{	
 			String cantOfRegisters = numOfRegistersField.getText();
-			//try {
-				//main.generatePeople(Integer.parseInt(cantOfRegisters));
-			//} catch (IOException e) {
-				// TODO Auto-generated catch block
-				//e.printStackTrace();
-			//}
-			main.showMenu();
+			try {
+				main.generatePeople(Integer.parseInt(cantOfRegisters));
+				main.showMenu();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			
+			
+		}
 		}
 	}
 	

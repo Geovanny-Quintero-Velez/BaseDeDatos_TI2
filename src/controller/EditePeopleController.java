@@ -45,6 +45,16 @@ public class EditePeopleController {
 		lastName.setText(person.getLastName());
 		height.setText(person.getHeight()+"");
 		code.setText(person.getCode());
+		nationatilySelector.setAccessibleText(person.getNationality());
+		gender.setAccessibleText(person.isGender());
+	}
+	@FXML
+	public void delete() {
+		
+	}
+	
+	@FXML
+	public void edite() {
 		
 	}
 	

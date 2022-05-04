@@ -9,6 +9,7 @@ public class FilterCode implements Comparator<Person>{
 	public int compare(Person per1, Person per2) {
 		String code1=per1.getCode();
 		String code2=per2.getCode();
+		
 		boolean flag=true;
 		for(int j=0;j<code1.length()&&j<code2.length()&&flag;j++) {
 			
@@ -29,6 +30,12 @@ public class FilterCode implements Comparator<Person>{
 			}else {
 				return 0;
 			}
+		}
+		if(code1.equals(code2)) {
+			return 0;
+		}
+		if(code1.equals(code2)) {
+			return 0;
 		}
 		return 1;
 	}
