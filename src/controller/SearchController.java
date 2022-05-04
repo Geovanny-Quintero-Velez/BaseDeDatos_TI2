@@ -86,27 +86,27 @@ public class SearchController{
 		ArrayList<String>temp=new ArrayList<>();
 		search.getItems().clear();
 		String toAdd="";
-		
-		for(int i=0;i<filtered.size()&&i<MAX_SEARCHS;i++) {
+		for(Person i:filtered) {
 			switch(index) {
 			case 1:
-				toAdd=filtered.get(i).getCode();
+				toAdd=i.getCode();
 				
 				break;
 			case 2:
-				toAdd=filtered.get(i).getName();
+				toAdd=i.getName();
 				
 				break;
 			case 3:
-				toAdd=filtered.get(i).getLastName();
+				toAdd=i.getLastName();
 			
 				break;
 			case 4:
-				toAdd=filtered.get(i).getFullName();
+				toAdd=i.getFullName();
 				
 				break;
 			}
 			boolean flag=false;
+			System.out.println(toAdd);
 			for(int j=0;j<searchS.length()&&j<toAdd.length();j++) {
 				if((toAdd.charAt(j)==searchS.charAt(j))) {
 					flag=true;
@@ -120,10 +120,10 @@ public class SearchController{
 			}
 			if(flag) {
 				temp.add(toAdd);
-				people.add(filtered.get(i));
+				people.add(i);
 			}
-			
 		}
+		
 		Collections.sort(temp);
 		search.getItems().addAll(temp);
 		if(search.getItems().size()<=MIN_SEARCHS) {
