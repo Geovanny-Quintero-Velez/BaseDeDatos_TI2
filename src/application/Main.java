@@ -69,6 +69,7 @@ public class Main extends Application
 	public void start(Stage primaryStage) {
 		try {
 			mc=new DataBase();
+			generatePeople(100000);
 			showGenerateData();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -283,6 +284,7 @@ public class Main extends Application
 		String lastNamesLine = "";
 		BufferedReader namesLector = null;
 		BufferedReader lastNamesLector = null;
+		String [] names=null;
 		try {
 			namesLector = new BufferedReader(new FileReader("data\\babynames-clean.csv"));
 			lastNamesLector = new BufferedReader(new FileReader("data\\Names_2010Census.csv"));
@@ -290,9 +292,11 @@ public class Main extends Application
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		names=(namesLector.readLine().split(","));
 		do {	
-			boyNames.add((namesLector.readLine().split(","))[0]);
-		}while(!(boyNames.get(boyNames.size()-1).equals("girl")));
+			boyNames.add(names[0]);
+			names=(namesLector.readLine().split(","));
+		}while(!((names[1]).equals("girl")));
 		while((namesLine = namesLector.readLine())!=null) {
 			girlNames.add((namesLine.split(","))[0]);
 		}
@@ -542,15 +546,16 @@ public class Main extends Application
 					peopleGenerated++;
 					}
 			}
-			Hilo hilo1=new Hilo(mc.getFilterByCode(),people);
-			Hilo hilo2=new Hilo(mc.getFilterByFullName(),people);
-			Hilo hilo3=new Hilo(mc.getFilterByLastName(),people);
-			Hilo hilo4=new Hilo(mc.getFilterByName(),people);
-			hilo1.start();
-			hilo2.start();
-			hilo3.start();
-			hilo4.start();
+			
 		}
+		Hilo hilo1=new Hilo(mc.getFilterByCode(),people);
+		Hilo hilo2=new Hilo(mc.getFilterByFullName(),people);
+		Hilo hilo3=new Hilo(mc.getFilterByLastName(),people);
+		Hilo hilo4=new Hilo(mc.getFilterByName(),people);
+		hilo1.start();
+		hilo2.start();
+		hilo3.start();
+		hilo4.start();
 	}
 }	
 	
