@@ -12,28 +12,19 @@ public class FilterCode implements Comparator<Person>{
 		
 		boolean flag=true;
 		for(int j=0;j<code1.length()&&j<code2.length()&&flag;j++) {
-			
 			if(code1.charAt(j)==code2.charAt(j)) {
-				flag=true;
 			}else if(code1.charAt(j)>code2.charAt(j)){
-				flag=false;
 				return 1;
 			}else {
 				return -1;
 			}
 		}
-		if(!flag) {
-			if(code1.length()>code2.length()) {
-				return 1;
-			}else if(code1.length()<code2.length()){
-				return -1;
-			}else {
-				return 0;
-			}
+		if(code1.length()>code2.length()) {
+			return 1;
+		}else if(code1.length()<code2.length()){
+			return -1;
 		}
-		if(code1.equals(code2)) {
-			return 0;
-		}
+		
 		if(code1.equals(code2)) {
 			return 0;
 		}

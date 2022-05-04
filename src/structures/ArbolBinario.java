@@ -114,7 +114,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	public ArrayList<E> getGreater(Node current,ArrayList<E> array,E value) {
 		ArrayList<E> greater=array;
 		if(root!=null) {
-			
 			if(comparator.compare( current.getValue(),value)>=0 ) {
 				greater.add(current.getValue());
 			}

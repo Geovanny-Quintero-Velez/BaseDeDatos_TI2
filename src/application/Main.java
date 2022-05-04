@@ -608,10 +608,8 @@ public class Main extends Application
 			for(int i=0;i<people.size();i++) {
 				toAddElements.insert(people.get(i));
 			}
-			System.out.println("Termino");
-			for(Person i:people) {
-				System.out.println(i.getName());
-			}
+			System.out.println(toAddElements.size());
+		
 		}
 	}
 

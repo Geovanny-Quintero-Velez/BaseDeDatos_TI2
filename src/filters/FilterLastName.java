@@ -22,15 +22,13 @@ public class FilterLastName implements Comparator<Person>{
 				return -1;
 			}
 		}
-		if(!flag) {
-			if(name1.length()>name2.length()) {
-				return 1;
-			}else if(name1.length()<name2.length()){
-				return -1;
-			}else {
-				return 0;
-			}
+		
+		if(name1.length()>name2.length()) {
+			return 1;
+		}else if(name1.length()<name2.length()){
+			return -1;
 		}
+		
 		if(name1.equals(name2)) {
 			return 0;
 		}

@@ -92,7 +92,6 @@ public class DataBase implements Serializable{
 		case 1:
 			return getFilterCode(param);
 		case 2:
-			
 			return getFilterName(param);
 		case 3:
 			return getFilterLastName(param);

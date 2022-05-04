@@ -67,6 +67,7 @@ public class SearchController{
 		}
 		
 		Person person=main.getPersonInList(index,toFind);
+		
 		System.out.println(person);
 		if(person!=null) {
 			main.showEditePeople(person);
@@ -80,7 +81,6 @@ public class SearchController{
 	@FXML
 	public void actualize() {
 		String searchS=search.getEditor().getText();
-		
 		filtered= main.getList(index,searchS);
 		people=new ArrayList<>();
 		ArrayList<String>temp=new ArrayList<>();
@@ -107,7 +107,6 @@ public class SearchController{
 				break;
 			}
 			boolean flag=false;
-			System.out.println(toAdd);
 			for(int j=0;j<searchS.length()&&j<toAdd.length();j++) {
 				if((toAdd.charAt(j)==searchS.charAt(j))) {
 					flag=true;

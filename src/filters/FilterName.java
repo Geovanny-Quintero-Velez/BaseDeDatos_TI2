@@ -1,5 +1,4 @@
 package filters;
-import java.util.Arrays;
 import java.util.Comparator;
 
 import model.Person;
@@ -12,27 +11,22 @@ public class FilterName implements Comparator<Person> {
 		boolean flag=true;
 		
 		for(int j=0;j<name1.length()&&j<name2.length()&&flag;j++) {
-			
 			if(name1.charAt(j)==name2.charAt(j)) {
 				flag=true;
-				
 			}else if(name1.charAt(j)>name2.charAt(j)){
 				flag=false;
 				return 1;
 			}else {
+				flag=false;
 				return -1;
-			}
-		}
-		if(!flag) {
-			if(name1.length()>name2.length()) {
-				return 1;
-			}else if(name1.length()<name2.length()){
-				return -1;
-			}else {
-				return 0;
 			}
 		}
 		
+		if(name1.length()>name2.length()) {
+			return 1;
+		}else if(name1.length()<name2.length()){
+			return -1;
+		}
 		if(name1.equals(name2)) {
 			return 0;
 		}
