@@ -80,6 +80,7 @@ public class DataBase implements Serializable{
 		case 1:
 			return getFilterCode(param);
 		case 2:
+			
 			return getFilterName(param);
 		case 3:
 			return getFilterLastName(param);
@@ -90,6 +91,7 @@ public class DataBase implements Serializable{
 	}
 	
 	public ArrayList<Person> getFilterCode(String code){
+		
 		Person mediator=new Person();
 		mediator.setCode(code);
 		return filterByCode.getGreater(mediator);
@@ -101,9 +103,9 @@ public class DataBase implements Serializable{
 		return filterByName.getGreater(mediator);
 	}
 	
-	public ArrayList<Person> getFilterLastName(String code){
+	public ArrayList<Person> getFilterLastName(String name){
 		Person mediator=new Person();
-		mediator.setCode(code);
+		mediator.setLastName(name);
 		return filterByLastName.getGreater(mediator);
 	}
 	
