@@ -103,9 +103,9 @@ public class DataBase implements Serializable{
 		return filterByName.getGreater(mediator);
 	}
 	
-	public ArrayList<Person> getFilterLastName(String code){
+	public ArrayList<Person> getFilterLastName(String name){
 		Person mediator=new Person();
-		mediator.setCode(code);
+		mediator.setLastName(name);
 		return filterByLastName.getGreater(mediator);
 	}
 	
