@@ -321,7 +321,7 @@ public class Main extends Application
 			
 			if(peopleGenerated<= (peopleToGenerate / COUNTRIES_AMOUNT)/2) {
 				gender = Person.MALE;
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._0_TO_14_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._0_TO_14_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
@@ -344,7 +344,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 				}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
@@ -367,7 +367,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
@@ -390,7 +390,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
@@ -413,7 +413,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
 						boyNamesCounter = 0;
 						lastNamesCounter++;
@@ -438,7 +438,7 @@ public class Main extends Application
 					}
 			}else{
 				gender = Person.FEMALE;
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._0_TO_14_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._0_TO_14_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
@@ -461,7 +461,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
@@ -484,7 +484,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
@@ -507,7 +507,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
@@ -530,7 +530,7 @@ public class Main extends Application
 					people.add(persona);
 					peopleGenerated++;
 					}
-				for(int j=0; j<Math.floor(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
+				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
 						girlNamesCounter = 0;
 						lastNamesCounter++;
