@@ -8,13 +8,9 @@ import model.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import application.Main;
-import filters.FilterCode;
-import filters.FilterFullName;
-import filters.FilterLastName;
-import filters.FilterName;
+
 
 public class SearchController{
 	@FXML
@@ -23,6 +19,7 @@ public class SearchController{
 	public final int MAX_SEARCHS=100;
 	public final int MIN_SEARCHS=20;
 	public ArrayList<Person> filtered;
+	ArrayList<Person>people;
 	Main main;
 	public int index;
 	@FXML
@@ -35,44 +32,40 @@ public class SearchController{
 	
 	@FXML
 	public void editElement() {
-		Comparator<Person> comp=null;;
-		switch(index) {
-		case 1:
-			comp=new FilterCode();
-			break;
-		case 2:
-			comp=new FilterName();
-			break;
-		case 3:
-			comp=new FilterLastName();
-			break;
-		case 4:
-			comp=new FilterFullName();
-			break;
-		}
+		
 		String var=search.getEditor().getText();
-		Person toSearch=new Person();
-		toSearch.setName(var);
-		toSearch.setCode(var);
-		toSearch.setLastName(var);
-		toSearch.setFullName(var);
+		
 		Person toFind=null;
-		for(Person person:filtered) {
-			if(comp.compare(person, toSearch)==0) {
-				toFind=person;
-				if(toFind!=null) {
+		for(Person person:people) {
+			switch(index) {
+			case 1:
+				if(person.getCode().equals(var)) {
+					toFind=person;
+					break;
+				}
+			case 2:
+				if(person.getName().equals(var)) {
+					toFind=person;
+					break;
+				}
+			case 3:
+				if(person.getLastName().equals(var)) {
+					toFind=person;
+					break;
+				}
+			case 4:
+				if(person.getFullName().equals(var)) {
+					toFind=person;
 					break;
 				}
 			}
 		}
-		System.out.println();
+		System.out.println(toFind.getName());
 		Person person=main.getPersonInList(index,toFind);
 		System.out.println(person);
-		if(person!=null) {
-			
+		if(person!=null) {	
 			main.showEditePeople(person);
 		}
-		
 	}
 	
 	public void setMain(Main main) {
@@ -84,7 +77,7 @@ public class SearchController{
 		String searchS=search.getEditor().getText();
 		
 		filtered= main.getList(index,searchS);
-		ArrayList<Person>people=new ArrayList<>();
+		people=new ArrayList<>();
 		ArrayList<String>temp=new ArrayList<>();
 		search.getItems().clear();
 		String toAdd="";

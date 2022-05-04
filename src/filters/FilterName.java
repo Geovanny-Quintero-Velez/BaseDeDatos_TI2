@@ -13,6 +13,7 @@ public class FilterName implements Comparator<Person> {
 			
 			if(name1.charAt(j)==name2.charAt(j)) {
 				flag=true;
+				
 			}else if(name1.charAt(j)>name2.charAt(j)){
 				flag=false;
 				return 1;
@@ -29,7 +30,7 @@ public class FilterName implements Comparator<Person> {
 				return 0;
 			}
 		}
-		return 1;
+		return 0;
 	}
 	
 }
