@@ -1,4 +1,6 @@
 package controller;
+import java.time.LocalDate;
+
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -12,6 +14,8 @@ public class EditePeopleController {
 	TextField name;
 	@FXML
 	TextField lastName;
+	@FXML
+	DatePicker birth;
 	
 	@FXML
 	ComboBox<String> nationatilySelector;
@@ -21,9 +25,42 @@ public class EditePeopleController {
 	TextField height;
 	@FXML
 	Label code;
+	@FXML
+	Label nationality;
+	@FXML
+	Label date;
+	@FXML
+	Label genderL;
 	
 	Main main;
 	
+	@FXML
+	public void edite() {
+		main.delete(person);
+		LocalDate birthDate=birth.getValue();
+		if(birthDate!=null) {
+			person.setBirthDate(birthDate);
+		}
+		person.setName(name.getText());
+		person.setLastName(lastName.getText());
+		person.setFullName(name.getText()+" "+lastName.getText());
+		person.setHeight(Double.parseDouble(height.getText()));
+		
+		String nationality=nationatilySelector.getValue();
+		
+		if(nationality!=null) {
+			person.setNationality(nationality);
+		}
+		String gen=gender.getValue() ;
+		if(gen!=null) {
+			person.setGender(gen);
+		}
+		
+		
+		
+		main.insert(person);
+		main.showMenu();
+	}
 	
 	public void setMain(Main main) {
 		this.main=main;
@@ -41,6 +78,10 @@ public class EditePeopleController {
 		nationatilySelector.getItems().add("Australia/Oceania");
 		nationatilySelector.getItems().add("Antartica");
 		this.person=person;
+		nationatilySelector.setAccessibleText(person.getNationality());
+		nationality.setText(person.getNationality());
+		date.setText(person.getBirthDate().toString());
+		genderL.setText(person.isGender());
 		name.setText(person.getName());
 		lastName.setText(person.getLastName());
 		height.setText(person.getHeight()+"");
@@ -50,13 +91,11 @@ public class EditePeopleController {
 	}
 	@FXML
 	public void delete() {
-		
+		main.delete(person);
+		main.showMenu();
 	}
 	
-	@FXML
-	public void edite() {
-		
-	}
+	
 	
 	
 }

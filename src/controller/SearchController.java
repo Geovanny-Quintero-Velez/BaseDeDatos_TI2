@@ -8,13 +8,9 @@ import model.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 import application.Main;
-import filters.FilterCode;
-import filters.FilterFullName;
-import filters.FilterLastName;
-import filters.FilterName;
+
 
 
 public class SearchController{
@@ -68,7 +64,6 @@ public class SearchController{
 		
 		Person person=main.getPersonInList(index,toFind);
 		
-		System.out.println(person);
 		if(person!=null) {
 			main.showEditePeople(person);
 		}
@@ -106,7 +101,6 @@ public class SearchController{
 				break;
 			}
 			boolean flag=false;
-			System.out.println(toAdd);
 			for(int j=0;j<searchS.length()&&j<toAdd.length();j++) {
 				if((toAdd.charAt(j)==searchS.charAt(j))) {
 					flag=true;

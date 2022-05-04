@@ -13,7 +13,7 @@
    <bottom>
       <AnchorPane fx:id="birthDate" prefHeight="290.0" prefWidth="249.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="198.0" layoutY="249.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="73.0" text="Edit">
+            <Button layoutX="198.0" layoutY="249.0" mnemonicParsing="false" onAction="#edite" prefHeight="27.0" prefWidth="73.0" text="Edit">
                <font>
                   <Font name="Candara Bold" size="14.0" />
                </font></Button>
@@ -21,11 +21,11 @@
                <font>
                   <Font name="Candara Italic" size="19.0" />
                </font></Label>
-            <DatePicker layoutX="21.0" layoutY="106.0" prefHeight="26.0" prefWidth="139.0" promptText="Birthdate" />
+            <DatePicker fx:id="birth" layoutX="21.0" layoutY="106.0" prefHeight="26.0" prefWidth="139.0" promptText="Birthdate" />
             <TextField fx:id="name" alignment="CENTER" layoutX="62.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="Name" />
             <TextField fx:id="lastName" alignment="CENTER" layoutX="154.0" layoutY="55.0" prefHeight="30.0" prefWidth="80.0" promptText="S. Name" />
             <ComboBox fx:id="gender" layoutX="175.0" layoutY="107.0" prefHeight="25.0" prefWidth="85.0" promptText="Gender" visibleRowCount="5" />
-            <ComboBox fx:id="nationatilySelector" layoutX="72.0" layoutY="153.0" prefHeight="25.0" prefWidth="140.0" promptText="Nationality" />
+            <ComboBox fx:id="nationatilySelector" layoutX="20.0" layoutY="153.0" prefHeight="25.0" prefWidth="140.0" promptText="Nationality" />
             <TextField fx:id="height" alignment="CENTER" layoutX="76.0" layoutY="198.0" prefHeight="30.0" prefWidth="60.0" promptText="Meters" />
             <Label layoutX="16.0" layoutY="202.0" prefHeight="22.0" prefWidth="57.0" text="Heigth :" textAlignment="CENTER">
                <font>
@@ -42,11 +42,14 @@
                   <Font name="Candara Italic" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="24.0" layoutY="249.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="73.0" text="Delete">
+            <Button layoutX="24.0" layoutY="249.0" mnemonicParsing="false" onAction="#delete" prefHeight="27.0" prefWidth="73.0" text="Delete">
                <font>
                   <Font name="Candara Bold" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="date" layoutX="19.0" layoutY="136.0" text="BirthDate" />
+            <Label fx:id="genderL" layoutX="221.0" layoutY="135.0" text="Gender" />
+            <Label fx:id="nationality" layoutX="171.0" layoutY="157.0" text="Nationality" />
          </children>
       </AnchorPane>
    </bottom>

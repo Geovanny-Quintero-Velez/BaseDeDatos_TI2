@@ -131,21 +131,18 @@ public class Main extends Application
 	public void showEditePeople(Person person)
 	{
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/EditPeople.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			EditePeopleController controller = loader.getController();
 			controller.setMain(this);
 			controller.setPerson(person);
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-			currentStage = stage;
+			currentStage.setHeight(400);
+			currentStage.setWidth(310);
+			root.setCenter(newRoot);
+			currentStage.show();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -154,18 +151,15 @@ public class Main extends Application
 	public void showAddPeople()
 	{
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/AddPeople.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			AddPeopleController controllerz = loader.getController();
 			controllerz.setMain(this);
 			
-			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			currentStage.setScene(scene);
+			root.setCenter(newRoot);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -174,18 +168,17 @@ public class Main extends Application
 
 	public void searchByCode() {
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
 			controllerz.begining(1);
-			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			currentStage.setScene(scene);
+			root.setCenter(newRoot);
+			currentStage.setHeight(350);
+			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -194,18 +187,17 @@ public class Main extends Application
 
 	public void searchByFullName() {
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
 			controllerz.begining(4);
-			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			currentStage.setScene(scene);
+			currentStage.setHeight(350);
+			currentStage.setWidth(400);
+			root.setCenter(newRoot);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -222,18 +214,17 @@ public class Main extends Application
 	
 	public void searchByLastName() {
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
 			controllerz.begining(3);
-			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			currentStage.setScene(scene);
+			root.setCenter(newRoot);
+			currentStage.setHeight(350);
+			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -242,19 +233,18 @@ public class Main extends Application
 
 	public void searchByName() {
 		try {
-			System.out.println("Entro");
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
-			root = (BorderPane)loader.load();
-			
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
 			controllerz.begining(2);
-			Scene scene= new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
-			currentStage.setScene(scene);
+			root.setCenter(newRoot);
+			currentStage.setHeight(350);
+			currentStage.setWidth(400);
 			currentStage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
