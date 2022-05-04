@@ -38,12 +38,12 @@ public class GenerateDatController {
 		else
 		{	
 			String cantOfRegisters = numOfRegistersField.getText();
-			try {
-				main.generatePeople(Integer.parseInt(cantOfRegisters));
-			} catch (IOException e) {
+			//try {
+				//main.generatePeople(Integer.parseInt(cantOfRegisters));
+			//} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				//e.printStackTrace();
+			//}
 			main.showMenu();
 		}
 	}

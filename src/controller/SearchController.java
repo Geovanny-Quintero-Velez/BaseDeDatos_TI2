@@ -5,8 +5,10 @@ import javafx.scene.control.ComboBox;
 import model.Person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import application.Main;
+import filters.FilterName;
 
 public class SearchController{
 	
@@ -30,11 +32,12 @@ public class SearchController{
 	@FXML
 	public void actualize() {
 		String searchS=search.getEditor().getText();
-		filtered= main.getArrayList(index,searchS);
+		
+		filtered= main.getList(index,searchS);
 		ArrayList<String>temp=new ArrayList<>();
 		search.getItems().clear();
+		String toAdd="";
 		for(int i=0;i<filtered.size();i++) {
-			String toAdd="";
 			switch(index) {
 			case 1:
 				toAdd=filtered.get(i).getCode();
@@ -66,6 +69,7 @@ public class SearchController{
 			}
 			
 		}
+		Collections.sort(temp);
 		search.getItems().addAll(temp);
 		
 	}

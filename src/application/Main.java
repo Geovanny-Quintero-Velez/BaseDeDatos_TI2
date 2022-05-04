@@ -68,6 +68,19 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			mc=new DataBase();
+			ArrayList<Person> people=new ArrayList<>();
+			for(int i=0;i<100000;i++) {
+				people.add(new Person(""+i, ""+i, ""+i, LocalDate.now(), 1.7, ""));
+			}
+			//Hilo hilo1=new Hilo(mc.getFilterByCode(),people);
+			Hilo hilo2=new Hilo(mc.getFilterByFullName(),people);
+			Hilo hilo3=new Hilo(mc.getFilterByLastName(),people);
+			Hilo hilo4=new Hilo(mc.getFilterByName(),people);
+			//hilo1.start();
+			hilo2.start();
+			hilo3.start();
+			hilo4.start();
 			showGenerateData();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -209,6 +222,7 @@ public class Main extends Application
 
 	public void searchByName() {
 		try {
+			System.out.println("Entro");
 			BorderPane root;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Search.fxml"));
@@ -227,9 +241,13 @@ public class Main extends Application
 		}		
 	}
 	
-	public ArrayList<Person> getArrayList(int index,String value){
+	public static ArrayList<Person> getArrayList(int index,String value){
 		ArrayList<Person>a=mc.getFilteredList(index,value);
 		return a;
+	}
+	
+	public ArrayList<Person> getList(int index,String value){
+		return getArrayList(index,value);
 	}
 
 	public void generatePeople(int peopleToGenerate) throws IOException  {
