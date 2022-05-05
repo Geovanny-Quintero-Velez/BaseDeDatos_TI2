@@ -5,11 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
+import model.Person;
 
 import java.time.LocalDate;
 
 import application.Main;
-import javafx.event.ActionEvent;
 
 import javafx.scene.control.ComboBox;
 
@@ -43,10 +43,12 @@ public class AddPeopleController
 		String name = nameField.getText();
 		String lastName = lastNameField.getText();
 		String height = heigthField.getText();
+		double heightN=Double.parseDouble(height);
+		String gender = genderSelector.getValue();
 		
-		int gender = genderSelector.getSelectionModel().getSelectedIndex();
-		int nationatily = nationatilySelector.getSelectionModel().getSelectedIndex();
-		
+		String nationatily = nationatilySelector.getValue();
+		Person person=new Person(name,lastName, gender, birthDate,heightN,nationatily);
+		main.insert(person);
 		main.showMenu();
 	}
 

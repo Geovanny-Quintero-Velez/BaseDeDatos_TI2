@@ -2,9 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import application.Main;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 
 public class MenuController
 {
