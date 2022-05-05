@@ -110,22 +110,18 @@ public class Main extends Application
 	public void showGenerateData()
 	{
 		try {
-			BorderPane root;
+			BorderPane newRoot;
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/GenerateData.fxml"));
-			root = (BorderPane)loader.load();
-			
-			GenerateDatController controller = loader.getController();
-			controller.setMain(this);
-			
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
-			
-			Stage stage = new Stage();
-			stage.setScene(scene);
-			stage.show();
-			currentStage = stage;
-		}catch (IOException e) {
+			newRoot = (BorderPane)loader.load();
+			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
+			GenerateDatController controllerz = loader.getController();
+			controllerz.setMain(this);
+			root.setCenter(newRoot);
+			currentStage.setHeight(250);
+			currentStage.setWidth(290);
+			currentStage.show();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
