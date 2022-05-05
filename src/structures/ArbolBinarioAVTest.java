@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 
 class ArbolBinarioAVTest {
-	ArbolBinario<Integer,MyComp> arbol;
+	ArbolBinarioAV<Integer,MyComp> arbol;
 	int max;
 	public void scenario1() {
-		arbol=new ArbolBinario<>(new MyComp());
+		arbol=new ArbolBinarioAV<>(new MyComp());
 	}
 	
 	public void scenario2() {
-		arbol=new ArbolBinario<>(new MyComp());
+		arbol=new ArbolBinarioAV<>(new MyComp());
 		max=100;
 		for(int i=0;i<max;i++) {
 			arbol.insert(i);
@@ -23,7 +23,7 @@ class ArbolBinarioAVTest {
 	}
 	
 	public void scenario3() {
-		arbol=new ArbolBinario<>(new MyComp());
+		arbol=new ArbolBinarioAV<>(new MyComp());
 		
 		arbol.insert(10);
 		arbol.insert(-2);
@@ -53,7 +53,7 @@ class ArbolBinarioAVTest {
 		scenario1();
 		assertTrue(arbol.height()==0);
 		scenario3();
-		assertTrue(arbol.height()==4);
+		assertTrue(arbol.height()==5);
 	}
 
 	@Test
