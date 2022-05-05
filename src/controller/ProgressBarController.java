@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
@@ -20,6 +21,9 @@ public class ProgressBarController implements Initializable
 	private Label initialTimeLabel;
 	
 	@FXML
+	private Button continueButton;
+	
+	@FXML
 	private Label finalTimeLabel;
 	
 	@Override
@@ -30,7 +34,6 @@ public class ProgressBarController implements Initializable
 	
 	public void incrementTenPercent(double percent)
 	{
-		System.out.println(percent);
 		generateDataProgressBar.setProgress(percent);
 	}
 
@@ -51,6 +54,11 @@ public class ProgressBarController implements Initializable
 	
 	public Main getMain() {
 		return main;
+	}
+	
+	public void continueApp()
+	{
+		main.showMenu();
 	}
 
 	public void setMain(Main main) {
