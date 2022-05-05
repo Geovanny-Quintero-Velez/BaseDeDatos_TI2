@@ -126,7 +126,7 @@ public class Main extends Application
 		}
 	}
 	
-	public void showProgressBar()
+	public void showProgressBar(int total)
 	{
 		try {
 			BorderPane root;
@@ -134,15 +134,18 @@ public class Main extends Application
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/ProgressBar.fxml"));
 			root = (BorderPane)loader.load();
 			
-			ProgressBarController controllerz = loader.getController();
-			controllerz.setMain(this);
+			ProgressBarController controller = loader.getController();
+			controller.setMain(this);
+			controller.setTotal(total);
 			
-			Scene scene= new Scene(root);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
 			
-			currentStage.setScene(scene);
-			currentStage.show();
-		} catch (IOException e) {
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+			currentStage = stage;
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

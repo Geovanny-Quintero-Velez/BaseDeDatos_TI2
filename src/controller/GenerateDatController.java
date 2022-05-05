@@ -39,7 +39,7 @@ public class GenerateDatController {
 			String cantOfRegisters = numOfRegistersField.getText();
 			try {
 				main.generatePeople(Integer.parseInt(cantOfRegisters));
-				main.showMenu();
+				main.showProgressBar(Integer.parseInt(cantOfRegisters));
 			} catch (IOException e) {
 				
 				e.printStackTrace();
