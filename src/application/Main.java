@@ -26,7 +26,7 @@ public class Main extends Application
 {
 	
 	private Stage currentStage;
-	static DataBase mc;
+	DataBase mc;
 	public Main()
 	{	
 		mc=new DataBase();
@@ -34,7 +34,7 @@ public class Main extends Application
 	
 	public void serialize() {
 		try {
-			FileOutputStream fos = new FileOutputStream("..\\file\\PeopleRecords.txt");
+			FileOutputStream fos = new FileOutputStream("src\\file\\PeopleRecords.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(mc);
 			oos.close();
@@ -47,7 +47,7 @@ public class Main extends Application
 	
 	public void deserialize() {
 		try {
-			FileInputStream fis = new FileInputStream("..\\file\\PeopleRecords.txt");
+			FileInputStream fis = new FileInputStream("src\\file\\PeopleRecords.txt");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			mc = (DataBase) ois.readObject();
 			ois.close();
@@ -61,7 +61,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			mc=new DataBase();
+			deserialize();
 			showNewMenu();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -294,7 +294,7 @@ public class Main extends Application
 		}		
 	}
 	
-	public static ArrayList<Person> getArrayList(int index,String value){
+	public ArrayList<Person> getArrayList(int index,String value){
 		ArrayList<Person>a=mc.getFilteredList(index,value);
 		return a;
 	}

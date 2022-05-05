@@ -1,10 +1,16 @@
 package filters;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import model.Person;
 
-public class FilterLastName implements Comparator<Person>{
+public class FilterLastName implements Comparator<Person>, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public int compare(Person per1, Person per2) {
 		String name1=per1.getLastName();

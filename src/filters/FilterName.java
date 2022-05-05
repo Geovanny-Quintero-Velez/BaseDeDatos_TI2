@@ -1,8 +1,14 @@
 package filters;
+import java.io.Serializable;
 import java.util.Comparator;
 
 import model.Person;
-public class FilterName implements Comparator<Person> {
+public class FilterName implements Comparator<Person>, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	public int compare(Person per1, Person per2) {

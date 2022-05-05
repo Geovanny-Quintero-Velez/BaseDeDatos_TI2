@@ -1,10 +1,15 @@
 package structures;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class ArbolBinario<E ,C extends Comparator<E>> {
+public class ArbolBinario<E ,C extends Comparator<E>> implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Node root;
 	private C comparator;
 	
@@ -326,7 +331,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		return out;
 	}
 	
-	private class Node{
+	private class Node implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private E value;
 		private Node left;
 		private Node right;
