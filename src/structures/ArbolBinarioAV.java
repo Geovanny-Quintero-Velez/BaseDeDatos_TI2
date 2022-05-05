@@ -1,18 +1,18 @@
 package structures;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
 
-public class ArbolBinario<E ,C extends Comparator<E>> {
+public class ArbolBinarioAV<E ,C extends Comparator<E>> {
 	
 	private Node root;
 	private C comparator;
 	
-	public ArbolBinario(C comparetor) {
+	public ArbolBinarioAV(C comparetor) {
 		this.comparator=comparetor;
 	}
 	
-	public ArbolBinario() {
+	public ArbolBinarioAV() {
 		
 	}
 	
@@ -39,9 +39,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	public int size() {
-		if(root==null) {
-			return 0;
-		}
 		return root.countNodes();
 	}
 	
@@ -58,79 +55,18 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		return root.getRight().getValue();
 	}
 	
-	public int factor() {
-		return root.factorBalance();
-	}
-	
 	public void insert(Node current,Node toInsert) {
 		if(comparator.compare(toInsert.getValue(),current.getValue())>=0) {
 			if(current.getRight()==null) {
 				current.setRight(toInsert);
-				balance(toInsert);
+				
 			}else insert(current.getRight(),toInsert);
 		}else {
 			if(current.getLeft()==null) {
 				current.setLeft(toInsert);
-				balance(toInsert);
+				
 			}else insert(current.getLeft(),toInsert);
 		}
-	}
-	
-	public void balance(Node node) {
-		if(node==root) {
-			if(!root.isBalanced()) {
-				int fb=root.factorBalance();
-				if(fb==2) {
-					int fbs=root.getRight().factorBalance();
-					if(fbs==0||fbs==1) {
-						root=root.leftRotation();
-					}else if(fbs==-1){
-						root.getRight().rightRotation();
-						root=root.leftRotation();
-					}
-				}else if(fb==-2){
-					int fbs=root.getLeft().factorBalance();
-					if(fbs==0||fbs==-1) {
-						root=root.rightRotation();
-					}else if(fbs==1){
-						root.getLeft().leftRotation();
-						root=root.rightRotation();
-					}
-				}
-			}
-			
-		}else if(node.isLeaf()) {
-			balance(node.getParent());
-		}else {
-			if(node.balance()==null) {
-				balance(node.getParent());
-			}
-		
-		}
-		
-	}
-	
-	public ArrayList<E> getGreater(E value) {
-		ArrayList<E> greater=new ArrayList<>();
-		return getGreater(root,greater,value);
-	}
-	public ArrayList<E> getGreater(Node current,ArrayList<E> array,E value) {
-		ArrayList<E> greater=array;
-		if(root!=null) {
-			if(comparator.compare( current.getValue(),value)>=0 ) {
-				greater.add(current.getValue());
-			}
-			if(current.getRight()!=null) {
-				greater=getGreater(current.getRight(), greater, value);
-			}
-			if(current.getLeft()!=null) {
-				greater=getGreater(current.getLeft(), greater, value);
-			}
-		}
-		return greater;
-	}
-	public boolean isBalanced() {
-		return root.isBalanced();
 	}
 	
 	public int countNodes() {
@@ -152,14 +88,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		if(root==null) {
 			return false;
 		}else {
-			return root.search(toSearch)!=null;//search(root,toSearch);
+			return root.search(toSearch)!=null;
 		}
 	}
 	
 	public int height() {
-		if(root==null) {
-			return 0;
-		}else
 		return root.height();
 	}
 	
@@ -232,7 +165,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 				}
 				
 				toDelete.setValue(succesor.getValue());
-				balance(toDelete);
+				
 				return true;
 			}else {
 				if(toDelete.getLeft()!=null) {
@@ -242,11 +175,11 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 						}else {
 							parent.setRight(toDelete.getLeft());
 						}
-						balance(parent);
+						
 						return true;
 					}else {
 						root=root.getLeft();
-						balance(root);
+						
 						return true;
 					}
 				}else {
@@ -256,10 +189,10 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 						}else {
 							parent.setRight(toDelete.getRight());
 						}
-						balance(parent);
+						
 					}else {
 						root=root.getRight();
-						balance(root);
+					
 					}
 					return true;
 				}
@@ -309,10 +242,7 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	
-	public Node tryGsa() {
-		Node a=root;
-		return getAntecesor(root,a);
-	}
+	
 	
 	public String toString() {
 		String out="[";
@@ -386,20 +316,20 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 		}
 		
 		public int height() {
-		int hLeaft=0;
-		int hRight=0;
-		if(left!=null) {
-			hLeaft= left.height();
-		}
-		if(right!=null) {
-			hRight=right.height();
-		}
-		return Math.max(hLeaft, hRight)+1;
-		}
-		
-		public String toString() {
-			String out=""+value;			
-		return out;
+			int hLeaft=0;
+			int hRight=0;
+			if(left!=null) {
+				hLeaft= left.height();
+			}
+			if(right!=null) {
+				hRight=right.height();
+			}
+			return Math.max(hLeaft, hRight)+1;
+			}
+			
+			public String toString() {
+				String out=""+value;			
+			return out;
 		}
 		public String inorder() {
 			String out="";
@@ -476,111 +406,6 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 
 		public Node getParent() {
 			return parent;
-		}
-		
-		public boolean isBalanced() {
-			int fb=Math.abs(factorBalance());
-			return fb==1||fb==0;
-		}
-		
-		public int factorBalance() {
-			int rightN=0;
-			int leftN=0;
-			if(right!=null) {
-				rightN=right.height();
-			}
-			if(left!=null) {
-				leftN=left.height();
-			}
-			
-			return rightN-leftN;
-		}
-		
-		public Node leftRotation() {
-			 Node p=this;
-			 Node q=right;
-			 Node thisParent=parent;
-			 Node b=q.left;
-			 Node c=q.getRight();
-			 Node a=p.left;
-			 if(thisParent!=null) {
-				 if(thisParent.getLeft()==p) {
-					 thisParent.setLeft(q);
-					
-				 }else {
-					 thisParent.setRight(q);
-					
-				 } 
-			 }else {
-				 q.setParent(null);
-			 }
-			 q.setLeft(p);
-			 q.setRight(c);
-			 p.setLeft(a);
-			 p.setRight(b);
-		   return q;
-		}
-		
-		public Node rightRotation() {
-			Node p=this;
-			Node thisParent=parent;
-			Node q=p.left;
-			Node a=p.right;
-			Node b=q.right;
-			Node c=q.left;
-			if(thisParent!=null) {
-				 if(thisParent.getLeft()==p) {
-					 thisParent.setLeft(q);
-					 
-				 }else {
-					 thisParent.setRight(q);
-					 
-				 }
-			}else {
-				q.setParent(null);
-			}
-			 q.setRight(p);
-			 q.setLeft(c);
-			 p.setLeft(b);			
-			 p.setRight(a);
-			 return q;
-		}
-		
-		
-		public Node balance() {
-			
-			int fb=factorBalance();
-			if(fb==2) {
-				int fbs=right.factorBalance();
-				if(fbs==0||fbs==1) {
-					return leftRotation();
-				}else if(fbs==-1){
-					return doubleRotationR();
-				} 
-				
-			}else if(fb==-2) {
-				int fbs=left.factorBalance();
-				if(fbs==-1||fbs==0) {
-					return rightRotation();
-				}else if(fbs==1) {
-					return doubleRotationL();
-				}
-				
-			}
-			return null;
-		}
-		
-		
-		
-		
-		public Node doubleRotationR() {
-			right.rightRotation();
-			return leftRotation();
-		}
-		
-		public Node doubleRotationL() {
-			left.leftRotation();
-			return rightRotation();
 		}
 		
 		public void setParent(Node parent) {
