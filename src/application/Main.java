@@ -70,7 +70,7 @@ public class Main extends Application
 	public void start(Stage primaryStage) {
 		try {
 			mc=new DataBase();
-			showGenerateData();
+			showNewMenu();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -82,6 +82,29 @@ public class Main extends Application
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public void showNewMenu()
+	{
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/Menu.fxml"));
+			root = (BorderPane)loader.load();
+			
+			MenuController controller = loader.getController();
+			controller.setMain(this);
+			
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.show();
+			currentStage = stage;
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void showGenerateData()
@@ -103,6 +126,27 @@ public class Main extends Application
 			stage.show();
 			currentStage = stage;
 		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showProgressBar()
+	{
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/ProgressBar.fxml"));
+			root = (BorderPane)loader.load();
+			
+			ProgressBarController controllerz = loader.getController();
+			controllerz.setMain(this);
+			
+			Scene scene= new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			currentStage.setScene(scene);
+			currentStage.show();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

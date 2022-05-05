@@ -11,10 +11,19 @@ public class MenuController
 	private Main main;
 	
 	@FXML
+	private Button generateButton;
+	
+	@FXML
 	private Button addButton;
 	
 	@FXML
 	private Button saveButton;
+	
+	@FXML
+	public void generate()
+	{
+		main.showGenerateData();
+	}
 	
 	@FXML
 	public void save()
