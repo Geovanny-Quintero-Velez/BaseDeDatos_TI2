@@ -61,7 +61,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			deserialize();
+			deserialize();//
 			showNewMenu();
 		} catch(Exception e) {
 			e.printStackTrace();
