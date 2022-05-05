@@ -41,7 +41,11 @@ class ArbolBinarioAVTest {
 	
 	@Test
 	void testGet() {
-		
+		scenario1();
+		assertTrue(arbol.get(0)==null);
+		scenario3();
+		assertTrue(arbol.get(0)==null);
+		assertTrue(arbol.get(10)==10);
 	}
 
 	@Test

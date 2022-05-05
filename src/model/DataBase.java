@@ -158,10 +158,7 @@ public class DataBase implements Serializable{
 		return filterByFullName.get(name);
 	}
 	
-	public void run() {
-		
-		
-	}
+	
 
 
 	
