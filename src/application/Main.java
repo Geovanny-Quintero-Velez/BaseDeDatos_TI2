@@ -118,7 +118,7 @@ public class Main extends Application
 		}
 	}
 	
-	public void showProgressBar(int total)
+	public void showProgressBar(int cantOfRegisters)
 	{
 		try {
 			BorderPane root;
@@ -128,7 +128,6 @@ public class Main extends Application
 			
 			ProgressBarController controller = loader.getController();
 			controller.setMain(this);
-			controller.setTotal(total);
 			
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
@@ -137,9 +136,16 @@ public class Main extends Application
 			stage.setScene(scene);
 			stage.show();
 			currentStage = stage;
+			
+			tryShowProgress(cantOfRegisters, controller);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void tryShowProgress(int cantOfRegisters, ProgressBarController controller) throws IOException
+	{
+		generatePeople(cantOfRegisters, controller);
 	}
 	
 	public void showMenu()
@@ -301,8 +307,8 @@ public class Main extends Application
 		return getArrayList(index,value);
 	}
 	
-	public void generatePeople(int amount)throws IOException {
-		mc.generatePeople(amount);
+	public void generatePeople(int amount,  ProgressBarController controller)throws IOException {
+		mc.generatePeople(amount, controller);
 	}
 	
 }	

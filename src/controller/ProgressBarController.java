@@ -13,26 +13,42 @@ public class ProgressBarController implements Initializable
 {
 	private Main main;
 	
-	private int total;
-	
-	private double progress;
-	
 	@FXML
 	private ProgressBar generateDataProgressBar;
 	
 	@FXML
-	private Label usedTimeLabel;
+	private Label initialTimeLabel;
+	
+	@FXML
+	private Label finalTimeLabel;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
-		double onePercent = (1/total);
-
-		
 		generateDataProgressBar.setStyle("-fx-accent: #800080");
-		
-	}	
+	}
+	
+	public void incrementTenPercent(double percent)
+	{
+		System.out.println(percent);
+		generateDataProgressBar.setProgress(percent);
+	}
 
+	public void setInitialTime(String initialTime)
+	{
+		initialTimeLabel.setText(initialTime);
+	}
+	
+	public void setFinalTime(String finalTime)
+	{
+		finalTimeLabel.setText(finalTime);
+	}
+	
+	public void complete()
+	{
+		generateDataProgressBar.setProgress(1);
+	}
+	
 	public Main getMain() {
 		return main;
 	}
@@ -40,16 +56,4 @@ public class ProgressBarController implements Initializable
 	public void setMain(Main main) {
 		this.main = main;
 	}
-
-	public void setTotal(int total)
-	{
-		this.total = total;
-	}
-
-	
-
-	
-	
-	
-
 }

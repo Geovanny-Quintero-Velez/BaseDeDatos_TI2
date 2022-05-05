@@ -5,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import controller.ProgressBarController;
 import enums.AGE_DISTRIBUTION;
 import enums.COUNTRIES;
 import filters.FilterCode;
@@ -173,7 +176,13 @@ public class DataBase implements Serializable{
 	}
 	
 	
-	public void generatePeople(int peopleToGenerate) throws IOException  {
+	public void generatePeople(int peopleToGenerate, ProgressBarController controller) throws IOException 
+	{
+		String initialTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+		controller.setInitialTime(initialTime);
+		
+		int tenPercent = peopleToGenerate/10;
+		
 		LocalDate actualDate = LocalDate.now();
 		LocalDate startDate = null;
 		LocalDate endDate = null;
@@ -244,6 +253,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 				}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
@@ -267,6 +277,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
@@ -290,6 +301,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
@@ -313,6 +325,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(boyNamesCounter == boyNames.size()) {
@@ -336,6 +349,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 			}else{
 				gender = Person.FEMALE;
@@ -361,6 +375,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._15_TO_24.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
@@ -384,6 +399,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._25_TO_54_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
@@ -407,6 +423,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._55_TO_64_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
@@ -430,6 +447,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 				for(int j=0; j<Math.ceil(((peopleToGenerate / COUNTRIES_AMOUNT)/2)*AGE_DISTRIBUTION._65_TO_MORE_.getDistribution());j++) {
 					if(girlNamesCounter == girlNames.size()) {
@@ -453,6 +471,7 @@ public class DataBase implements Serializable{
 					Person persona = new Person(name, lastName, gender, randomDate, height, country.name());
 					people.add(persona);
 					peopleGenerated++;
+					watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 					}
 			}
 			
@@ -480,6 +499,7 @@ public class DataBase implements Serializable{
 			Person persona = new Person(name, lastName, gender, randomDate, height, COUNTRIES.UNITED_STATES.name());
 			people.add(persona);
 			peopleGenerated++;
+			watch(controller, peopleGenerated, tenPercent, peopleToGenerate);
 		}
 		Hilo hilo1=new Hilo(getFilterByCode(),people);
 		Hilo hilo2=new Hilo(getFilterByFullName(),people);
@@ -489,6 +509,27 @@ public class DataBase implements Serializable{
 		hilo2.start();
 		hilo3.start();
 		hilo4.start();
+		
+		controller.complete();
+		String finalTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Calendar.getInstance().getTime());
+		controller.setFinalTime(finalTime);
+	}
+	
+	public void watch(ProgressBarController controller, int peopleGenerated, int tenPercent, int peopleToGenerate)
+	{
+		for(int i = 1; i <= 10; i++)
+		{
+			if(peopleGenerated == tenPercent*(i))
+			{
+				double percent = i;
+				
+				controller.incrementTenPercent(percent/10);
+			}
+			else if(peopleGenerated == peopleToGenerate)
+			{
+				controller.complete();
+			}
+		}
 	}
 
 	

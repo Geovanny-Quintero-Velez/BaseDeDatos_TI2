@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="30.0" />
                </font></Label>
             <Label layoutX="20.0" layoutY="102.0" text="#Registers :" />
-            <TextField fx:id="numOfRegistersField" layoutX="88.0" layoutY="98.0" promptText="Max : 1 Billion" />
+            <TextField fx:id="numOfRegistersField" layoutX="88.0" layoutY="98.0" promptText="Max : 1 Million." text="1000000" />
             <Button fx:id="generateDataButton" layoutX="76.0" layoutY="149.0" mnemonicParsing="false" onAction="#generateData" text="Generate Data" />
          </children>
       </AnchorPane>

@@ -6,8 +6,13 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import controller.ProgressBarController;
+
 class DataBaseTest {
 	DataBase db;
+	
+	private ProgressBarController controller;
+	
 	public void scneario1() {
 		db=new DataBase();
 	}
@@ -19,7 +24,7 @@ class DataBaseTest {
 		assertTrue(db.getFilterByLastName().size()==0);
 		assertTrue(db.getFilterByFullName().size()==0);
 		try {
-			db.generatePeople(1000);
+			db.generatePeople(1000, controller);
 		} catch (IOException e) {
 			fail();
 		}
