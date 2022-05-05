@@ -93,6 +93,9 @@ public class ArbolBinarioAV<E ,C extends Comparator<E>> {
 	}
 	
 	public int height() {
+		if(root!=null) {
+			
+		}
 		return root.height();
 	}
 	

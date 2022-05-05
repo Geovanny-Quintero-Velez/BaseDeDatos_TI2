@@ -21,10 +21,13 @@ public class ArbolBinario<E ,C extends Comparator<E>> {
 	}
 	
 	public E get( E search) {
-		Node searched=new Node(search);
-		Node nodeFound=root.search(searched);
-		if(nodeFound!=null) {
-			return nodeFound.getValue();
+		
+		if(root!=null) {
+			Node searched=new Node(search);
+			Node nodeFound=root.search(searched);
+			if(nodeFound!=null) {
+				return nodeFound.getValue();
+			}
 		}
 		return null;
 	}
