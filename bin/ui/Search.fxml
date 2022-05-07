@@ -17,6 +17,11 @@
                </font></Label>
             <ComboBox fx:id="search" editable="true" layoutX="59.0" layoutY="54.0" onAction="#actualize" onInputMethodTextChanged="#actualize" onKeyPressed="#actualize" onKeyReleased="#actualize" onKeyTyped="#actualize" prefHeight="36.0" prefWidth="282.0" promptText="- - - -" />
             <Button fx:id="edit" disable="true" layoutX="323.0" layoutY="131.0" mnemonicParsing="false" onAction="#editElement" text="Edite" visible="false" />
+            <Button layoutX="16.0" layoutY="16.0" mnemonicParsing="false" onAction="#options" prefHeight="25.0" prefWidth="45.0" text="Options" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Candara" size="9.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>

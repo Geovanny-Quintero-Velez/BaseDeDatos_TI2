@@ -26,6 +26,20 @@ public class Main extends Application
 {
 	
 	private Stage currentStage;
+	private Stage configureStage;
+	public int maxSearchs=100;
+
+	public void setMaxSearchs(int maxSearchs) {
+		this.maxSearchs = maxSearchs;
+	}
+
+	public int minSearchs=20;
+	
+
+	public void setMinSearchs(int minSearchs) {
+		this.minSearchs = minSearchs;
+	}
+
 	DataBase mc;
 	public Main()
 	{	
@@ -97,6 +111,34 @@ public class Main extends Application
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void options(SearchController thisSeachs) {
+		try {
+			BorderPane root;
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/configurateSearch.fxml"));
+			root = (BorderPane)loader.load();
+			
+			configureSearchController controller = loader.getController();
+			controller.configure(maxSearchs, minSearchs, thisSeachs,this);
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("../ui/application.css").toExternalForm());
+			
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setHeight(180);
+			stage.setWidth(280);
+			stage.show();
+			configureStage=stage;
+			
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void closeConfigureSearch() {
+		configureStage.close();
 	}
 	
 	public void showGenerateData()
@@ -218,7 +260,7 @@ public class Main extends Application
 			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			controllerz.begining(1);
+			controllerz.begining(1,maxSearchs,minSearchs);
 			root.setCenter(newRoot);
 			currentStage.setHeight(250);
 			currentStage.setWidth(400);
@@ -237,7 +279,7 @@ public class Main extends Application
 			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			controllerz.begining(4);
+			controllerz.begining(4,maxSearchs,minSearchs);
 			currentStage.setHeight(250);
 			currentStage.setWidth(400);
 			root.setCenter(newRoot);
@@ -264,7 +306,7 @@ public class Main extends Application
 			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			controllerz.begining(3);
+			controllerz.begining(3,maxSearchs,minSearchs);
 			root.setCenter(newRoot);
 			currentStage.setHeight(250);
 			currentStage.setWidth(400);
@@ -283,8 +325,7 @@ public class Main extends Application
 			BorderPane root = (BorderPane) currentStage.getScene().getRoot();
 			SearchController controllerz = loader.getController();
 			controllerz.setMain(this);
-			controllerz.begining(2);
-			
+			controllerz.begining(2,maxSearchs,minSearchs);
 			root.setCenter(newRoot);
 			currentStage.setHeight(250);
 			currentStage.setWidth(400);

@@ -17,18 +17,34 @@ public class SearchController{
 	@FXML
 	Button edit;
 	
-	public final int MAX_SEARCHS=100;
-	public final int MIN_SEARCHS=20;
+	public int maxSearchs;
+	public int minSearchs;
 	public ArrayList<Person> filtered;
 	ArrayList<Person>people;
 	Main main;
 	public int index;
+	
+	
+	public void configure(int maxSearchs,int minSearchs) {
+		this.maxSearchs=maxSearchs;
+		this.minSearchs=minSearchs;
+		main.maxSearchs=maxSearchs;
+		main.minSearchs=minSearchs;
+	}
+	
+	public void options() {
+		main.options(this);
+	}
+	
+	
 	@FXML
 	public ComboBox<String> search;
 	
-	public void begining(int index) {
+	public void begining(int index,int maxSearchs,int minSearchs) {
 		this.index=index;
-		search.visibleRowCountProperty().set(MAX_SEARCHS);
+		search.visibleRowCountProperty().set(maxSearchs);
+		this.maxSearchs=maxSearchs;
+		this.minSearchs=minSearchs;
 	}
 	
 	@FXML
@@ -119,8 +135,11 @@ public class SearchController{
 		}
 		
 		Collections.sort(temp);
-		search.getItems().addAll(temp);
-		if(search.getItems().size()<=MIN_SEARCHS) {
+		for(int i=0;i<maxSearchs&&i<temp.size();i++) {
+			search.getItems().add(temp.get(i));
+		}
+		
+		if(search.getItems().size()<=minSearchs) {
 			edit.setVisible(true);
 			edit.setDisable(false);
 		}else {
